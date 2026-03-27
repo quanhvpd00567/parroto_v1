@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink, Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -23,14 +24,16 @@ const Navbar = () => {
     navigate('/login');
   };
 
+  const currentPath = location.pathname;
+
   return (
     <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl shadow-sm h-16 px-6 md:px-12 flex justify-between items-center max-w-screen-2xl mx-auto left-1/2 -translate-x-1/2">
       <div className="flex items-center gap-8">
-        <span className="text-2xl font-bold tracking-tight text-primary">Parroto</span>
+        <Link to="/dashboard" className="text-2xl font-bold tracking-tight text-primary cursor-pointer">Parroto</Link>
         <div className="hidden md:flex gap-6">
-          <a className="text-primary font-semibold border-b-2 border-primary pb-1" href="/lessons">Lessons</a>
-          <a className="text-slate-600 hover:text-blue-800 transition-colors" href="/practice">Practice</a>
-          <a className="text-slate-600 hover:text-blue-800 transition-colors" href="/vocabulary">Vocabulary</a>
+          <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-semibold border-b-2 border-primary pb-1' : 'text-slate-600 hover:text-blue-800 transition-colors'}`} to="/lessons">Lessons</NavLink>
+          <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-semibold border-b-2 border-primary pb-1' : 'text-slate-600 hover:text-blue-800 transition-colors'}`} to="/practice">Practice</NavLink>
+          <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-semibold border-b-2 border-primary pb-1' : 'text-slate-600 hover:text-blue-800 transition-colors'}`} to="/vocabulary">Vocabulary</NavLink>
           <a className="text-slate-600 hover:text-blue-800 transition-colors" href="#">Community</a>
         </div>
       </div>
@@ -55,14 +58,14 @@ const Navbar = () => {
                 <p className="text-xs text-slate-500 mt-0.5">learner@parroto.com</p>
               </div>
               <div className="py-1">
-                <a href="/vocabulary" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
+                <Link to="/vocabulary" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
                   <span className="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary transition-colors">book_2</span>
                   My Vocabulary
-                </a>
-                <a href="/notes" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
+                </Link>
+                <Link to="/notes" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
                   <span className="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary transition-colors">sticky_note_2</span>
                   My Note
-                </a>
+                </Link>
               </div>
               <div className="border-t border-slate-100">
                 <button
