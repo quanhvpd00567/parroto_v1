@@ -10,7 +10,7 @@ import LandingPage from './pages/LandingPage';
 import LessonLibraryPage from './pages/LessonLibraryPage';
 import PracticeSessionPage from './pages/PracticeSessionPage';
 import EditProfilePage from './pages/EditProfilePage';
-import AddVocabularyPage from './pages/AddVocabularyPage';
+import VocabularyPage from './pages/VocabularyPage';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
           <Route path="/lessons" element={<ProtectedRoute><LessonLibraryPage /></ProtectedRoute>} />
           <Route path="/practice" element={<ProtectedRoute><PracticeSessionPage /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><EditProfilePage /></ProtectedRoute>} />
-          <Route path="/vocabulary" element={<ProtectedRoute><AddVocabularyPage /></ProtectedRoute>} />
+          <Route path="/vocabulary" element={<ProtectedRoute><VocabularyPage /></ProtectedRoute>} />
         </Routes>
       </Router>
     </AuthProvider>
