@@ -6,20 +6,20 @@ const Navbar = () => {
       <div className="flex items-center gap-8">
         <span className="text-2xl font-bold tracking-tight text-primary">Parroto</span>
         <div className="hidden md:flex gap-6">
-          <a className="text-primary font-semibold border-b-2 border-primary pb-1" href="#">Lessons</a>
-          <a className="text-slate-600 hover:text-blue-800 transition-colors" href="#">Practice</a>
+          <a className="text-primary font-semibold border-b-2 border-primary pb-1" href="/lessons">Lessons</a>
+          <a className="text-slate-600 hover:text-blue-800 transition-colors" href="/practice">Practice</a>
+          <a className="text-slate-600 hover:text-blue-800 transition-colors" href="/vocabulary">Vocabulary</a>
           <a className="text-slate-600 hover:text-blue-800 transition-colors" href="#">Community</a>
-          <a className="text-slate-600 hover:text-blue-800 transition-colors" href="#">Pricing</a>
         </div>
       </div>
       <div className="flex items-center gap-4">
         <button className="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-low rounded-full transition-all">notifications</button>
-        <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold text-sm overflow-hidden">
+        <a href="/profile" className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold text-sm overflow-hidden border border-outline-variant/10 hover:ring-2 hover:ring-primary/20 transition-all">
           <img
             alt="User Profile"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNJXr-lf8Qgb5pxPwSfvEBkq5p-KNAO3U63g9zFwJi3XoTlTAiemE1FI3jWFWR1bfISUdeaKLVDyRGE7jFbCQkL-Puj-VDg9PqMgk4bTaYZjkhs4pVWtxjdzf_P62iK3xLfHxV36jHnI1Jl2oMCYP-cKUI8m9mSssJiKs8tsWmTJ2HUSuGFSGIhO9HKZTQkVw-uFyvtv-hiEIjYVg0mIGf3w17vTU33mdj9yh0p949K531E0JTLKh5QsTw8VGXMu6buPzjphDjhsoz"
           />
-        </div>
+        </a>
       </div>
       <div className="bg-slate-100/50 h-[1px] w-full absolute bottom-0 left-0"></div>
     </nav>

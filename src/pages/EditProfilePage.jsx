@@ -9,15 +9,15 @@ const EditProfilePage = () => {
   return (
     <div className="bg-background text-on-surface min-h-screen pt-24 pb-24 md:pb-12">
       {/* TopAppBar */}
-      <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-[#F8F9FF]/70 backdrop-blur-lg shadow-[0_8px_32px_rgba(21,28,37,0.06)]">
+      <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-white/70 backdrop-blur-xl shadow-sm h-16">
         <div className="flex items-center gap-4">
-          <span className="text-2xl font-extrabold tracking-tight text-[#00288E]">Luminous</span>
+          <span className="text-2xl font-bold tracking-tight text-primary font-headline">Parroto</span>
         </div>
         <nav className="hidden md:flex items-center gap-8">
-          <a className="text-[#444653] hover:opacity-70 transition-opacity font-headline font-bold text-lg" href="#">Learn</a>
-          <a className="text-[#444653] hover:opacity-70 transition-opacity font-headline font-bold text-lg" href="#">Review</a>
-          <a className="text-[#444653] hover:opacity-70 transition-opacity font-headline font-bold text-lg" href="#">Vocabulary</a>
-          <a className="text-[#00288E] font-bold font-headline text-lg" href="#">Profile</a>
+          <a className="text-[#444653] hover:opacity-70 transition-opacity font-headline font-bold text-lg" href="/lessons">Learn</a>
+          <a className="text-[#444653] hover:opacity-70 transition-opacity font-headline font-bold text-lg" href="/practice">Review</a>
+          <a className="text-[#444653] hover:opacity-70 transition-opacity font-headline font-bold text-lg" href="/vocabulary">Vocabulary</a>
+          <a className="text-[#00288E] font-bold font-headline text-lg" href="/profile">Profile</a>
         </nav>
         <div className="flex items-center gap-4">
           <button className="material-symbols-outlined text-[#00288E] text-2xl active:scale-95 duration-200">account_circle</button>
@@ -44,19 +44,19 @@ const EditProfilePage = () => {
 
       {/* BottomNavBar (Mobile Only) */}
       <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 bg-[#FFFFFF]/80 backdrop-blur-xl shadow-[0_-8px_40px_rgba(0,0,0,0.04)] rounded-t-[3rem]">
-        <a className="flex flex-col items-center justify-center text-[#444653] opacity-60 hover:opacity-100 transition-all active:scale-90 duration-150" href="#">
+        <a className="flex flex-col items-center justify-center text-[#444653] opacity-60 hover:opacity-100 transition-all active:scale-90 duration-150" href="/lessons">
           <span className="material-symbols-outlined">auto_stories</span>
           <span className="font-body text-[11px] font-semibold uppercase tracking-wider mt-1">Learn</span>
         </a>
-        <a className="flex flex-col items-center justify-center text-[#444653] opacity-60 hover:opacity-100 transition-all active:scale-90 duration-150" href="#">
+        <a className="flex flex-col items-center justify-center text-[#444653] opacity-60 hover:opacity-100 transition-all active:scale-90 duration-150" href="/practice">
           <span className="material-symbols-outlined">psychology</span>
           <span className="font-body text-[11px] font-semibold uppercase tracking-wider mt-1">Review</span>
         </a>
-        <a className="flex flex-col items-center justify-center text-[#444653] opacity-60 hover:opacity-100 transition-all active:scale-90 duration-150" href="#">
+        <a className="flex flex-col items-center justify-center text-[#444653] opacity-60 hover:opacity-100 transition-all active:scale-90 duration-150" href="/vocabulary">
           <span className="material-symbols-outlined">menu_book</span>
           <span className="font-body text-[11px] font-semibold uppercase tracking-wider mt-1">Vocabulary</span>
         </a>
-        <a className="flex flex-col items-center justify-center text-[#00288E] scale-110 transition-transform active:scale-90 duration-150" href="#">
+        <a className="flex flex-col items-center justify-center text-[#00288E] scale-110 transition-transform active:scale-90 duration-150" href="/profile">
           <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>person</span>
           <span className="font-body text-[11px] font-semibold uppercase tracking-wider mt-1">Profile</span>
         </a>
