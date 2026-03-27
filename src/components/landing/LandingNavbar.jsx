@@ -6,10 +6,10 @@ const LandingNavbar = () => {
       <div className="max-w-screen-2xl mx-auto flex justify-between items-center h-16 px-6 md:px-12">
         <div className="text-2xl font-bold tracking-tight text-primary">Parroto</div>
         <div className="hidden md:flex items-center gap-8">
-          <a className="text-primary font-semibold border-b-2 border-primary pb-1" href="#">Lessons</a>
-          <a className="text-slate-600 hover:text-primary transition-colors" href="#">Practice</a>
+          <a className="text-primary font-semibold border-b-2 border-primary pb-1" href="/lessons">Lessons</a>
+          <a className="text-slate-600 hover:text-primary transition-colors" href="/practice">Practice</a>
+          <a className="text-slate-600 hover:text-primary transition-colors" href="/vocabulary">Vocabulary</a>
           <a className="text-slate-600 hover:text-primary transition-colors" href="#">Community</a>
-          <a className="text-slate-600 hover:text-primary transition-colors" href="#">Pricing</a>
         </div>
         <div className="flex items-center gap-4">
           <button className="hidden md:block text-primary font-semibold px-4 py-2 hover:bg-surface-container-low transition-all duration-300 rounded-lg">Log In</button>

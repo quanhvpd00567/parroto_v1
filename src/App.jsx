@@ -7,6 +7,7 @@ import LandingPage from './pages/LandingPage';
 import LessonLibraryPage from './pages/LessonLibraryPage';
 import PracticeSessionPage from './pages/PracticeSessionPage';
 import EditProfilePage from './pages/EditProfilePage';
+import AddVocabularyPage from './pages/AddVocabularyPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/lessons" element={<LessonLibraryPage />} />
         <Route path="/practice" element={<PracticeSessionPage />} />
         <Route path="/profile" element={<EditProfilePage />} />
+        <Route path="/vocabulary" element={<AddVocabularyPage />} />
       </Routes>
     </Router>
   );
