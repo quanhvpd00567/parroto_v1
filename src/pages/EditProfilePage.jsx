@@ -1,67 +1,77 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import DashboardLayout from '../components/layout/DashboardLayout';
 import ProfileAvatar from '../components/profile/ProfileAvatar';
 import ProfileIdentity from '../components/profile/ProfileIdentity';
 import ProfileBio from '../components/profile/ProfileBio';
 import LearningPreferences from '../components/profile/LearningPreferences';
 import ProfileActions from '../components/profile/ProfileActions';
+import ChangePassword from '../components/profile/ChangePassword';
+import useProfile from '../hooks/useProfile';
+import { useToast } from '../contexts/ToastContext';
 
 const EditProfilePage = () => {
-  return (
-    <div className="bg-background text-on-surface min-h-screen pt-24 pb-24 md:pb-12">
-      {/* TopAppBar */}
-      <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-white/70 backdrop-blur-xl shadow-sm h-16">
-        <div className="flex items-center gap-4">
-          <span className="text-2xl font-bold tracking-tight text-primary font-headline">Parroto</span>
-        </div>
-        <nav className="hidden md:flex items-center gap-8">
-          <a className="text-[#444653] hover:opacity-70 transition-opacity font-headline font-bold text-lg" href="/lessons">Learn</a>
-          <a className="text-[#444653] hover:opacity-70 transition-opacity font-headline font-bold text-lg" href="/practice">Review</a>
-          <a className="text-[#444653] hover:opacity-70 transition-opacity font-headline font-bold text-lg" href="/vocabulary">Vocabulary</a>
-          <a className="text-[#00288E] font-bold font-headline text-lg" href="/profile">Profile</a>
-        </nav>
-        <div className="flex items-center gap-4">
-          <button className="material-symbols-outlined text-[#00288E] text-2xl active:scale-95 duration-200">account_circle</button>
-        </div>
-      </header>
+  const { profile, form, isLoading, isSaving, error, success, updateField, save, cancel, setError, setSuccess } = useProfile();
+  const { addToast } = useToast();
 
-      <main className="max-w-4xl mx-auto px-6 py-12">
+  useEffect(() => {
+    if (success) {
+      addToast(success, 'success');
+      setSuccess(null);
+    }
+  }, [success, addToast, setSuccess]);
+
+  useEffect(() => {
+    if (error) {
+      addToast(error, 'danger');
+      setError(null);
+    }
+  }, [error, addToast, setError]);
+
+  if (isLoading) {
+    return (
+      <DashboardLayout>
+        <div className="flex items-center justify-center py-32">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+        </div>
+      </DashboardLayout>
+    );
+  }
+
+  return (
+    <DashboardLayout>
+      <div className="max-w-4xl mx-auto py-6">
         <div className="mb-12">
           <h1 className="text-4xl font-extrabold text-primary tracking-tight mb-2 font-headline">Edit Profile</h1>
           <p className="text-on-surface-variant font-medium">Personalize your luminous learning experience.</p>
         </div>
 
-        {/* Form Layout - Bento Style Cards */}
-        <form className="space-y-8">
+        <div className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-            <ProfileAvatar />
-            <ProfileIdentity />
-            <ProfileBio />
-            <LearningPreferences />
+            <ProfileAvatar avatarUrl={profile?.avatar_url} />
+            <ProfileIdentity
+              displayName={form?.display_name || ''}
+              email={profile?.email || ''}
+              onDisplayNameChange={(v) => updateField('display_name', v)}
+            />
+            <ProfileBio
+              bio={form?.bio || ''}
+              onBioChange={(v) => updateField('bio', v)}
+            />
+            <LearningPreferences
+              targetLanguage={form?.target_language || 'english'}
+              dailyGoalMinutes={form?.daily_goal_minutes || 20}
+              onTargetLanguageChange={(v) => updateField('target_language', v)}
+              onDailyGoalChange={(v) => updateField('daily_goal_minutes', v)}
+            />
           </div>
-          <ProfileActions />
-        </form>
-      </main>
+          <ProfileActions onSave={save} onCancel={cancel} isSaving={isSaving} />
 
-      {/* BottomNavBar (Mobile Only) */}
-      <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 bg-[#FFFFFF]/80 backdrop-blur-xl shadow-[0_-8px_40px_rgba(0,0,0,0.04)] rounded-t-[3rem]">
-        <a className="flex flex-col items-center justify-center text-[#444653] opacity-60 hover:opacity-100 transition-all active:scale-90 duration-150" href="/lessons">
-          <span className="material-symbols-outlined">auto_stories</span>
-          <span className="font-body text-[11px] font-semibold uppercase tracking-wider mt-1">Learn</span>
-        </a>
-        <a className="flex flex-col items-center justify-center text-[#444653] opacity-60 hover:opacity-100 transition-all active:scale-90 duration-150" href="/practice">
-          <span className="material-symbols-outlined">psychology</span>
-          <span className="font-body text-[11px] font-semibold uppercase tracking-wider mt-1">Review</span>
-        </a>
-        <a className="flex flex-col items-center justify-center text-[#444653] opacity-60 hover:opacity-100 transition-all active:scale-90 duration-150" href="/vocabulary">
-          <span className="material-symbols-outlined">menu_book</span>
-          <span className="font-body text-[11px] font-semibold uppercase tracking-wider mt-1">Vocabulary</span>
-        </a>
-        <a className="flex flex-col items-center justify-center text-[#00288E] scale-110 transition-transform active:scale-90 duration-150" href="/profile">
-          <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>person</span>
-          <span className="font-body text-[11px] font-semibold uppercase tracking-wider mt-1">Profile</span>
-        </a>
-      </nav>
-    </div>
+          <div className="border-t border-outline-variant/20 pt-8">
+            <ChangePassword />
+          </div>
+        </div>
+      </div>
+    </DashboardLayout>
   );
 };
 

@@ -1,6 +1,8 @@
 import React from 'react';
 
-const ProfileAvatar = () => {
+const DEFAULT_AVATAR = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAKgNitD-5JFoIXLz3UGGdGcc_G8t7U6DkHRJ-0ARcM4oi7z0YbaoEIWhLERVSrDxobpvLTLuGHOD2ukiwUV4BdpGaebzXaVcq6kGzs9es6ljzD_HsBcZ4Ua0DnqDBvgEP1YEVfQVlhydjkezOWgFOqlQy5A9eawLuGMhelP2FyzvTUw27lPKYbyBX6dpRkXPLDBvH1UbQwwZZvatkcWFg3MGcFA6EaAewV1kUSBNU73Alp0Aik2gofQvU8zXBzya-_mYJeSZHzTWAw';
+
+const ProfileAvatar = ({ avatarUrl }) => {
   return (
     <div className="md:col-span-4 bg-surface-container-lowest p-8 rounded-xl shadow-[0_8px_40px_rgba(0,0,0,0.04)] flex flex-col items-center justify-center space-y-4">
       <div className="relative group">
@@ -8,7 +10,7 @@ const ProfileAvatar = () => {
           <img
             className="w-full h-full object-cover"
             alt="User avatar"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKgNitD-5JFoIXLz3UGGdGcc_G8t7U6DkHRJ-0ARcM4oi7z0YbaoEIWhLERVSrDxobpvLTLuGHOD2ukiwUV4BdpGaebzXaVcq6kGzs9es6ljzD_HsBcZ4Ua0DnqDBvgEP1YEVfQVlhydjkezOWgFOqlQy5A9eawLuGMhelP2FyzvTUw27lPKYbyBX6dpRkXPLDBvH1UbQwwZZvatkcWFg3MGcFA6EaAewV1kUSBNU73Alp0Aik2gofQvU8zXBzya-_mYJeSZHzTWAw"
+            src={avatarUrl || DEFAULT_AVATAR}
           />
         </div>
         <button

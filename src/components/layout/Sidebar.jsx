@@ -16,10 +16,6 @@ const Sidebar = () => {
           <span className="material-symbols-outlined">translate</span>
           <span className="font-medium">Vocabulary</span>
         </a>
-        <a className="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all" href="/practice">
-          <span className="material-symbols-outlined">psychology</span>
-          <span className="font-medium">Practice</span>
-        </a>
         <a className="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all" href="/profile">
           <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>person</span>
           <span className="font-medium">Profile</span>

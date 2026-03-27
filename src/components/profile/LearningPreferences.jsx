@@ -1,6 +1,12 @@
 import React from 'react';
 
-const LearningPreferences = () => {
+const LANGUAGES = [
+  { key: 'english', label: 'English', color: 'bg-blue-600' },
+  { key: 'french', label: 'French', color: 'bg-indigo-600' },
+  { key: 'japanese', label: 'Japanese', color: 'bg-red-600' },
+];
+
+const LearningPreferences = ({ targetLanguage, dailyGoalMinutes, onTargetLanguageChange, onDailyGoalChange }) => {
   return (
     <div className="md:col-span-12 bg-surface-container-low p-8 rounded-xl space-y-6">
       <h3 className="text-xl font-bold text-primary-container">Learning Preferences</h3>
@@ -8,18 +14,20 @@ const LearningPreferences = () => {
         <div className="space-y-4">
           <label className="block text-sm font-bold text-on-surface-variant tracking-wide uppercase">Target Language</label>
           <div className="grid grid-cols-2 gap-3">
-            <button
-              className="flex items-center gap-3 p-3 rounded-lg bg-surface-container-lowest border-2 border-primary text-primary font-bold shadow-sm"
-              type="button"
-            >
-              <span className="w-6 h-4 bg-blue-600 rounded-sm"></span> French
-            </button>
-            <button
-              className="flex items-center gap-3 p-3 rounded-lg bg-surface-container-lowest border-2 border-transparent text-on-surface-variant font-medium hover:border-outline-variant transition-colors"
-              type="button"
-            >
-              <span className="w-6 h-4 bg-red-600 rounded-sm"></span> Japanese
-            </button>
+            {LANGUAGES.map((lang) => (
+              <button
+                key={lang.key}
+                className={`flex items-center gap-3 p-3 rounded-lg bg-surface-container-lowest border-2 font-medium transition-colors ${
+                  targetLanguage === lang.key
+                    ? 'border-primary text-primary font-bold shadow-sm'
+                    : 'border-transparent text-on-surface-variant hover:border-outline-variant'
+                }`}
+                type="button"
+                onClick={() => onTargetLanguageChange(lang.key)}
+              >
+                <span className={`w-6 h-4 ${lang.color} rounded-sm`}></span> {lang.label}
+              </button>
+            ))}
           </div>
         </div>
         <div className="space-y-4">
@@ -28,8 +36,13 @@ const LearningPreferences = () => {
             <input
               className="w-full h-2 bg-surface-container-highest rounded-full appearance-none cursor-pointer accent-primary"
               type="range"
+              min="5"
+              max="120"
+              step="5"
+              value={dailyGoalMinutes}
+              onChange={(e) => onDailyGoalChange(Number(e.target.value))}
             />
-            <span className="font-bold text-primary w-16">20 min</span>
+            <span className="font-bold text-primary w-20 text-right">{dailyGoalMinutes} min</span>
           </div>
         </div>
       </div>

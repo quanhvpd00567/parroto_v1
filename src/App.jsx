@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import { ToastProvider } from './contexts/ToastContext';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 import LoginPage from './pages/LoginPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import DashboardPage from './pages/DashboardPage';
@@ -11,18 +14,22 @@ import AddVocabularyPage from './pages/AddVocabularyPage';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/lessons" element={<LessonLibraryPage />} />
-        <Route path="/practice" element={<PracticeSessionPage />} />
-        <Route path="/profile" element={<EditProfilePage />} />
-        <Route path="/vocabulary" element={<AddVocabularyPage />} />
-      </Routes>
-    </Router>
+    <ToastProvider>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+          <Route path="/lessons" element={<ProtectedRoute><LessonLibraryPage /></ProtectedRoute>} />
+          <Route path="/practice" element={<ProtectedRoute><PracticeSessionPage /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><EditProfilePage /></ProtectedRoute>} />
+          <Route path="/vocabulary" element={<ProtectedRoute><AddVocabularyPage /></ProtectedRoute>} />
+        </Routes>
+      </Router>
+    </AuthProvider>
+    </ToastProvider>
   );
 }
 
