@@ -6,6 +6,7 @@ import DashboardPage from './pages/DashboardPage';
 import LandingPage from './pages/LandingPage';
 import LessonLibraryPage from './pages/LessonLibraryPage';
 import PracticeSessionPage from './pages/PracticeSessionPage';
+import EditProfilePage from './pages/EditProfilePage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/lessons" element={<LessonLibraryPage />} />
         <Route path="/practice" element={<PracticeSessionPage />} />
+        <Route path="/profile" element={<EditProfilePage />} />
       </Routes>
     </Router>
   );
