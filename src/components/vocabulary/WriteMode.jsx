@@ -59,22 +59,22 @@ const WriteMode = ({ word, onNext, onPrev, progress, total }) => {
   return (
     <div className="w-full max-w-5xl mx-auto">
       {/* Header */}
-      <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
-        <div className="flex items-center gap-6">
-          <div className="relative w-16 h-16 flex items-center justify-center">
+      <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 mb-8">
+        <div className="flex items-center gap-4 md:gap-6">
+          <div className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center shrink-0">
             <svg className="w-full h-full transform -rotate-90">
-              <circle className="text-surface-container-highest" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" strokeWidth="4" />
-              <circle className="text-tertiary-fixed-dim" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor"
+              <circle className="text-surface-container-highest" cx="50%" cy="50%" fill="transparent" r="44%" stroke="currentColor" strokeWidth="4" />
+              <circle className="text-tertiary-fixed-dim" cx="50%" cy="50%" fill="transparent" r="44%" stroke="currentColor"
                 strokeDasharray="176" strokeDashoffset={176 - (176 * (progress - 1)) / total} strokeWidth="4" />
             </svg>
-            <span className="absolute font-headline font-bold text-sm">{progress}/{total}</span>
+            <span className="absolute font-headline font-bold text-xs md:text-sm">{progress}/{total}</span>
           </div>
           <div>
             <div className="flex items-center gap-2 mb-0.5">
-              <h1 className="font-headline text-2xl font-bold tracking-tight text-on-surface">Writing Practice</h1>
+              <h1 className="font-headline text-xl md:text-2xl font-bold tracking-tight text-on-surface">Writing Practice</h1>
               <span className="text-[10px] bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded font-bold uppercase tracking-widest">{word.level || '—'}</span>
             </div>
-            <p className="text-on-surface-variant text-sm">Translate and spell the term correctly.</p>
+            <p className="text-on-surface-variant text-xs md:text-sm">Translate and spell the term correctly.</p>
           </div>
         </div>
         <div className="flex gap-4">
@@ -91,60 +91,60 @@ const WriteMode = ({ word, onNext, onPrev, progress, total }) => {
       </header>
 
       {/* Navigation */}
-      <div className="flex items-center justify-between mb-6">
-        <button onClick={handlePrev} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white text-on-surface-variant hover:text-primary hover:bg-primary/5 transition-all text-sm font-semibold border border-slate-100">
-          <span className="material-symbols-outlined text-lg">arrow_back</span> Previous
+      <div className="flex items-center justify-between mb-6 gap-2">
+        <button onClick={handlePrev} className="flex items-center gap-1 md:gap-2 px-3 md:px-4 py-2 rounded-full bg-white text-on-surface-variant hover:text-primary hover:bg-primary/5 transition-all text-xs md:text-sm font-semibold border border-slate-100">
+          <span className="material-symbols-outlined text-lg">arrow_back</span> <span className="hidden sm:inline">Previous</span>
         </button>
-        <div className="text-xs font-bold text-on-surface-variant/50 tracking-widest uppercase">Word {progress} of {total}</div>
-        <button onClick={handleNext} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white text-on-surface-variant hover:text-primary hover:bg-primary/5 transition-all text-sm font-semibold border border-slate-100">
-          Next <span className="material-symbols-outlined text-lg">arrow_forward</span>
+        <div className="text-[10px] md:text-xs font-bold text-on-surface-variant/50 tracking-widest uppercase text-center flex-1">Word {progress} of {total}</div>
+        <button onClick={handleNext} className="flex items-center gap-1 md:gap-2 px-3 md:px-4 py-2 rounded-full bg-white text-on-surface-variant hover:text-primary hover:bg-primary/5 transition-all text-xs md:text-sm font-semibold border border-slate-100">
+          <span className="hidden sm:inline">Next</span> <span className="material-symbols-outlined text-lg">arrow_forward</span>
         </button>
       </div>
 
       {/* Main Content */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         {/* Prompt Card */}
-        <div className="md:col-span-12 lg:col-span-7 bg-white rounded-2xl p-8 shadow-sm border border-slate-100 relative overflow-hidden flex flex-col justify-center">
+        <div className="md:col-span-12 lg:col-span-7 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-100 relative overflow-hidden flex flex-col justify-center">
           <div className="absolute top-0 right-0 w-32 h-32 bg-primary-fixed/10 rounded-bl-full -mr-8 -mt-8"></div>
-          <div className="flex justify-between items-start mb-10 relative z-10">
-            <div className="space-y-1">
-              <p className="text-xs font-bold uppercase tracking-widest text-on-surface-variant/60">Meaning</p>
-              <h2 className="text-4xl font-bold font-headline text-on-surface">{word.definitions?.[0]?.meaning}</h2>
+          <div className="flex flex-col sm:flex-row justify-between items-start gap-6 mb-8 md:mb-10 relative z-10">
+            <div className="space-y-1 w-full">
+              <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-on-surface-variant/60">Meaning</p>
+              <h2 className="text-2xl md:text-4xl font-bold font-headline text-on-surface break-words">{word.definitions?.[0]?.meaning}</h2>
             </div>
-            <div className="flex flex-col items-end gap-2">
-              <div className="flex items-center gap-3">
-                <span className="px-2 py-1 rounded-md bg-surface-container-high/50 text-on-surface-variant text-[10px] font-medium font-mono">{word.phonetic_uk || ''}</span>
-                <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low text-primary hover:bg-primary hover:text-white transition-all">
-                  <span className="material-symbols-outlined text-[18px]">volume_up</span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider">UK</span>
+            <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 w-full sm:w-auto overflow-x-auto no-scrollbar">
+              <div className="flex items-center gap-2 md:gap-3 shrink-0">
+                <span className="px-1.5 md:px-2 py-0.5 md:py-1 rounded-md bg-surface-container-high/50 text-on-surface-variant text-[9px] md:text-[10px] font-medium font-mono truncate max-w-[80px] md:max-w-none">{word.phonetic_uk || ''}</span>
+                <button className="flex items-center gap-1 md:gap-1.5 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-surface-container-low text-primary hover:bg-primary hover:text-white transition-all">
+                  <span className="material-symbols-outlined text-base md:text-[18px]">volume_up</span>
+                  <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wider">UK</span>
                 </button>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="px-2 py-1 rounded-md bg-surface-container-high/50 text-on-surface-variant text-[10px] font-medium font-mono">{word.phonetic_us || ''}</span>
-                <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low text-primary hover:bg-primary hover:text-white transition-all">
-                  <span className="material-symbols-outlined text-[18px]">volume_up</span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider">US</span>
+              <div className="flex items-center gap-2 md:gap-3 shrink-0">
+                <span className="px-1.5 md:px-2 py-0.5 md:py-1 rounded-md bg-surface-container-high/50 text-on-surface-variant text-[9px] md:text-[10px] font-medium font-mono truncate max-w-[80px] md:max-w-none">{word.phonetic_us || ''}</span>
+                <button className="flex items-center gap-1 md:gap-1.5 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-surface-container-low text-primary hover:bg-primary hover:text-white transition-all">
+                  <span className="material-symbols-outlined text-base md:text-[18px]">volume_up</span>
+                  <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wider">US</span>
                 </button>
               </div>
             </div>
           </div>
-          <div className="p-8 bg-surface-container-low rounded-2xl border-l-4 border-primary/20 relative z-10">
-            <p className="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-3 opacity-60">Example sentence</p>
+          <div className="p-6 md:p-8 bg-surface-container-low rounded-2xl border-l-4 border-primary/20 relative z-10">
+            <p className="text-on-surface-variant text-[10px] md:text-xs font-bold uppercase tracking-widest mb-3 opacity-60">Example sentence</p>
             {hasHtmlContent(word.definitions?.[0]?.example) ? (
-              <div className="text-xl font-headline leading-relaxed text-on-surface" dangerouslySetInnerHTML={{ __html: word.definitions[0].example }} />
+              <div className="text-lg md:text-xl font-headline leading-relaxed text-on-surface" dangerouslySetInnerHTML={{ __html: word.definitions[0].example }} />
             ) : (
-              <p className="text-xl font-headline leading-relaxed text-on-surface-variant italic">No example available</p>
+              <p className="text-lg md:text-xl font-headline leading-relaxed text-on-surface-variant italic">No example available</p>
             )}
           </div>
         </div>
 
         {/* Input Area */}
         <div className="md:col-span-12 lg:col-span-5 flex flex-col gap-6">
-          <div className={`bg-white rounded-2xl p-8 shadow-sm border ${borderClass} transition-all duration-300 flex flex-col h-full`}>
-            <label className="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-4" htmlFor="answer">Your Answer</label>
+          <div className={`bg-white rounded-2xl p-6 md:p-8 shadow-sm border ${borderClass} transition-all duration-300 flex flex-col h-full`}>
+            <label className="text-on-surface-variant text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4" htmlFor="answer">Your Answer</label>
             <div className="relative flex-grow flex flex-col justify-center">
               <input
-                className={`w-full text-center text-4xl font-headline font-bold ${statusColor} placeholder:text-surface-container-high border-none focus:ring-0 bg-transparent py-8 outline-none transition-colors duration-300`}
+                className={`w-full text-center text-2xl md:text-4xl font-headline font-bold ${statusColor} placeholder:text-surface-container-high border-none focus:ring-0 bg-transparent py-6 md:py-8 outline-none transition-colors duration-300`}
                 id="answer" placeholder="Type here..." type="text" autoComplete="off"
                 value={answer}
                 disabled={status === 'correct' || status === 'close'}
@@ -184,12 +184,12 @@ const WriteMode = ({ word, onNext, onPrev, progress, total }) => {
             <div className="mt-6 space-y-3">
               {status === 'correct' || status === 'close' ? (
                 <button onClick={handleNext}
-                  className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-5 rounded-full font-headline font-bold text-lg shadow-xl shadow-green-500/20 hover:scale-[1.02] active:scale-95 transition-all duration-300">
+                  className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 md:py-5 rounded-full font-headline font-bold text-base md:text-lg shadow-xl shadow-green-500/20 hover:scale-[1.02] active:scale-95 transition-all duration-300">
                   Next Word →
                 </button>
               ) : (
                 <button onClick={handleCheck} disabled={checking || !answer.trim()}
-                  className={`w-full ${status === 'wrong' ? 'bg-error' : 'bg-gradient-to-r from-primary to-primary-container'} text-white py-5 rounded-full font-headline font-bold text-lg shadow-xl ${status === 'wrong' ? 'shadow-error/20' : 'shadow-primary/20'} hover:scale-[1.02] active:scale-95 transition-all duration-300 disabled:opacity-50`}>
+                  className={`w-full ${status === 'wrong' ? 'bg-error' : 'bg-gradient-to-r from-primary to-primary-container'} text-white py-4 md:py-5 rounded-full font-headline font-bold text-base md:text-lg shadow-xl ${status === 'wrong' ? 'shadow-error/20' : 'shadow-primary/20'} hover:scale-[1.02] active:scale-95 transition-all duration-300 disabled:opacity-50`}>
                   {checking ? 'Checking...' : status === 'wrong' ? 'Try Again' : 'Check Answer'}
                 </button>
               )}

@@ -12,12 +12,12 @@ const levelColors = {
 const WordList = ({ words, activeWord, onSelectWord }) => {
   return (
     <div className="col-span-12 md:col-span-5 lg:col-span-4 space-y-6">
-      <div className="space-y-3 h-[calc(100vh-20rem)] overflow-y-auto pr-2 custom-scrollbar">
+      <div className="space-y-3 max-h-[300px] md:h-[calc(100vh-20rem)] overflow-y-auto pr-2 custom-scrollbar">
         {words.map((word) => (
           <div
             key={word.id}
             onClick={() => onSelectWord(word)}
-            className={`p-5 rounded-2xl transition-all cursor-pointer border-l-4 ${
+            className={`p-4 md:p-5 rounded-2xl transition-all cursor-pointer border-l-4 ${
               activeWord?.id === word.id
                 ? 'bg-surface-container-lowest shadow-sm border-primary'
                 : 'bg-surface-container-low hover:bg-surface-container-high border-transparent'
@@ -26,13 +26,13 @@ const WordList = ({ words, activeWord, onSelectWord }) => {
             <div className="flex justify-between items-start">
               <div className="flex items-center gap-2">
                 {word.is_favorite && (
-                  <span className="material-symbols-outlined text-amber-500 text-base" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                  <span className="material-symbols-outlined text-amber-500 text-sm md:text-base" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
                 )}
                 <div>
-                  <h3 className={`text-lg font-bold ${activeWord?.id === word.id ? 'text-primary' : 'text-on-surface'}`}>
+                  <h3 className={`text-base md:text-lg font-bold ${activeWord?.id === word.id ? 'text-primary' : 'text-on-surface'}`}>
                     {word.term}
                   </h3>
-                  <p className="text-sm text-on-surface-variant font-body">{word.phonetic_us || word.phonetic_uk || ''}</p>
+                  <p className="text-xs md:text-sm text-on-surface-variant font-body">{word.phonetic_us || word.phonetic_uk || ''}</p>
                 </div>
               </div>
               {word.level && (
