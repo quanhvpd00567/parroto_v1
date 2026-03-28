@@ -20,41 +20,41 @@ const WordDetail = ({ word, actionLoading, onAction }) => {
 
   return (
     <div className="col-span-12 md:col-span-7 lg:col-span-8">
-      <div className="bg-surface-container-lowest rounded-xl p-5 md:p-8 lg:p-12 min-h-full shadow-sm relative overflow-hidden border border-outline-variant/10">
+      <div className="bg-surface-container-lowest rounded-xl p-4 md:p-8 lg:p-12 min-h-full shadow-sm relative overflow-hidden border border-outline-variant/10">
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
         <div className="relative z-10">
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 md:mb-12">
-            <div className="flex items-center gap-4 flex-wrap">
-              <h1 className="text-3xl md:text-5xl font-extrabold tracking-tighter text-on-surface font-headline">{word.term}</h1>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 mb-6 md:mb-12">
+            <div className="flex items-center gap-3 md:gap-4 flex-wrap">
+              <h1 className="text-2xl md:text-5xl font-extrabold tracking-tighter text-on-surface font-headline">{word.term}</h1>
               {word.level && (
-                <span className="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                <span className="bg-primary-container text-on-primary-container px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[9px] md:text-xs font-bold uppercase tracking-widest">
                   Level {word.level}
                 </span>
               )}
             </div>
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-1 md:gap-2 flex-wrap">
               <button onClick={() => onAction?.('favorite', word.id)} disabled={isLoading}
-                className="p-3 rounded-full hover:bg-surface-container-low transition-all disabled:opacity-50"
+                className="p-2 md:p-3 rounded-full hover:bg-surface-container-low transition-all disabled:opacity-50"
                 title={word.is_favorite ? 'Remove from favorites' : 'Add to favorites'}>
-                <span className={`material-symbols-outlined ${word.is_favorite ? 'text-amber-500' : 'text-outline'}`}
+                <span className={`material-symbols-outlined text-xl md:text-2xl ${word.is_favorite ? 'text-amber-500' : 'text-outline'}`}
                   style={word.is_favorite ? { fontVariationSettings: "'FILL' 1" } : {}}>star</span>
               </button>
               <button onClick={() => onAction?.('learned', word.id)} disabled={isLoading}
-                className="p-3 rounded-full hover:bg-surface-container-low text-green-600 transition-all disabled:opacity-50"
+                className="p-2 md:p-3 rounded-full hover:bg-surface-container-low text-green-600 transition-all disabled:opacity-50"
                 title="Mark as learned">
-                <span className="material-symbols-outlined">check_circle</span>
+                <span className="material-symbols-outlined text-xl md:text-2xl">check_circle</span>
               </button>
               <button
                 onClick={() => setShowShareModal(true)}
-                className="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-container-low text-outline hover:text-blue-600 hover:bg-blue-50 transition-all group"
+                className="w-9 h-9 md:w-11 md:h-11 flex items-center justify-center rounded-lg md:rounded-xl bg-surface-container-low text-outline hover:text-blue-600 hover:bg-blue-50 transition-all group"
               >
-                <span className="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">share</span>
+                <span className="material-symbols-outlined text-lg md:text-xl group-hover:scale-110 transition-transform">share</span>
               </button>
               <button onClick={() => onAction?.('remove', word.id)} disabled={isLoading}
-                className="p-3 rounded-full hover:bg-surface-container-low text-error transition-all disabled:opacity-50"
+                className="p-2 md:p-3 rounded-full hover:bg-surface-container-low text-error transition-all disabled:opacity-50"
                 title="Remove from my vocabulary">
-                <span className="material-symbols-outlined">delete</span>
+                <span className="material-symbols-outlined text-xl md:text-2xl">delete</span>
               </button>
             </div>
           </div>

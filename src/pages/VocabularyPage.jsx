@@ -136,21 +136,21 @@ const VocabularyPage = () => {
       <div className="bg-background">
         <div className="max-w-7xl mx-auto md:p-8">
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6 border-b border-outline-variant/20 pb-6 px-4 md:px-0 w-full">
-            <div className="space-y-1">
-              <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-on-surface font-headline">My Vocabulary</h1>
-              <div className="text-[10px] md:text-xs font-bold text-outline uppercase tracking-wider">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-8 gap-4 md:gap-6 border-b border-outline-variant/20 pb-4 md:pb-6 px-4 md:px-0 w-full">
+            <div className="space-y-0.5 md:space-y-1">
+              <h1 className="text-xl md:text-3xl font-extrabold tracking-tight text-on-surface font-headline">My Vocabulary</h1>
+              <div className="text-[9px] md:text-xs font-bold text-outline uppercase tracking-wider">
                 {studyMode === 'list' ? `${data?.meta?.total ?? 0} words` : 'Mastery Session'}
               </div>
             </div>
-            <div className="flex items-center gap-1 bg-surface-container-low p-1 rounded-2xl overflow-x-auto no-scrollbar">
+            <div className="flex items-center gap-1 bg-surface-container-low p-1 rounded-xl md:rounded-2xl overflow-x-auto no-scrollbar">
               {[
                 { key: 'list', icon: 'list_alt', label: 'List' },
                 { key: 'flashcard', icon: 'style', label: 'Flashcard' },
                 { key: 'write', icon: 'edit_note', label: 'Write' },
               ].map((mode) => (
                 <button key={mode.key} onClick={() => setStudyMode(mode.key)}
-                  className={`flex items-center gap-2 px-3 md:px-5 py-2 md:py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all whitespace-nowrap ${studyMode === mode.key ? 'bg-white text-primary shadow-sm' : 'text-on-surface-variant hover:bg-surface-container-high'}`}>
+                  className={`flex items-center justify-center gap-1.5 md:gap-2 px-3 md:px-5 py-2 md:py-2.5 rounded-lg md:rounded-xl font-bold text-[11px] md:text-sm transition-all whitespace-nowrap flex-1 md:flex-none ${studyMode === mode.key ? 'bg-white text-primary shadow-sm' : 'text-on-surface-variant hover:bg-surface-container-high'}`}>
                   <span className={`material-symbols-outlined text-base md:text-lg ${studyMode === mode.key ? 'filled' : ''}`}>{mode.icon}</span>
                   <span>{mode.label}</span>
                 </button>
@@ -161,15 +161,15 @@ const VocabularyPage = () => {
           {/* Search & Filter - only in list mode */}
           {studyMode === 'list' && (
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 px-4 md:px-0">
-              <div className="flex items-center gap-2 flex-1">
+              <div className="flex items-center gap-2 w-full sm:flex-1">
                 <input type="text" placeholder="Search vocabulary..." value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-                  className="px-4 py-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 flex-1 md:w-60" />
-                <button onClick={handleSearch} className="px-4 py-2 rounded-xl bg-primary text-on-primary text-sm font-bold hover:opacity-90 transition-opacity">Search</button>
+                  className="px-4 py-2.5 rounded-xl border border-outline-variant/30 bg-surface-container-lowest text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 flex-1 md:w-60" />
+                <button onClick={handleSearch} className="px-5 py-2.5 rounded-xl bg-primary text-on-primary text-sm font-bold hover:opacity-90 transition-opacity">Search</button>
               </div>
               <select value={levelFilter} onChange={(e) => handleLevelFilter(e.target.value)}
-                className="px-4 py-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 w-full sm:w-auto">
+                className="px-4 py-2.5 rounded-xl border border-outline-variant/30 bg-surface-container-lowest text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 w-full sm:w-auto">
                 <option value="">All Levels</option>
                 {LEVEL_OPTIONS.map((lvl) => <option key={lvl} value={lvl}>{lvl}</option>)}
               </select>

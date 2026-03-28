@@ -64,21 +64,21 @@ const WriteMode = ({ word, onNext, onPrev, progress, total, onWordLearned }) => 
     <div className="w-full max-w-5xl mx-auto">
       {/* Header */}
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 mb-8">
-        <div className="flex items-center gap-4 md:gap-6">
-          <div className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center shrink-0">
+        <div className="flex items-center gap-3 md:gap-6">
+          <div className="relative w-10 h-10 md:w-16 md:h-16 flex items-center justify-center shrink-0">
             <svg className="w-full h-full transform -rotate-90">
               <circle className="text-surface-container-highest" cx="50%" cy="50%" fill="transparent" r="44%" stroke="currentColor" strokeWidth="4" />
               <circle className="text-tertiary-fixed-dim" cx="50%" cy="50%" fill="transparent" r="44%" stroke="currentColor"
                 strokeDasharray="176" strokeDashoffset={176 - (176 * (progress - 1)) / total} strokeWidth="4" />
             </svg>
-            <span className="absolute font-headline font-bold text-xs md:text-sm">{progress}/{total}</span>
+            <span className="absolute font-headline font-bold text-[10px] md:text-sm">{progress}/{total}</span>
           </div>
           <div>
             <div className="flex items-center gap-2 mb-0.5">
-              <h1 className="font-headline text-xl md:text-2xl font-bold tracking-tight text-on-surface">Writing Practice</h1>
-              <span className="text-[10px] bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded font-bold uppercase tracking-widest">{word.level || '—'}</span>
+              <h1 className="font-headline text-lg md:text-2xl font-bold tracking-tight text-on-surface">Writing Practice</h1>
+              <span className="text-[9px] md:text-[10px] bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded font-bold uppercase tracking-widest">{word.level || '—'}</span>
             </div>
-            <p className="text-on-surface-variant text-xs md:text-sm">Translate and spell the term correctly.</p>
+            <p className="text-on-surface-variant text-[10px] md:text-sm">Translate and spell the term correctly.</p>
           </div>
         </div>
         <div className="flex gap-4">
@@ -108,14 +108,14 @@ const WriteMode = ({ word, onNext, onPrev, progress, total, onWordLearned }) => 
       {/* Main Content */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         {/* Prompt Card */}
-        <div className="md:col-span-12 lg:col-span-7 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-100 relative overflow-hidden flex flex-col justify-center">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-primary-fixed/10 rounded-bl-full -mr-8 -mt-8"></div>
-          <div className="flex flex-col sm:flex-row justify-between items-start gap-6 mb-8 md:mb-10 relative z-10">
-            <div className="space-y-1 w-full">
-              <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-on-surface-variant/60">Meaning</p>
-              <h2 className="text-2xl md:text-4xl font-bold font-headline text-on-surface break-words">{word.definitions?.[0]?.meaning}</h2>
+        <div className="md:col-span-12 lg:col-span-7 bg-white rounded-xl md:rounded-2xl p-4 md:p-8 shadow-sm border border-slate-100 relative overflow-hidden flex flex-col justify-center">
+          <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-primary-fixed/10 rounded-bl-full -mr-8 -mt-8"></div>
+          <div className="flex flex-col sm:flex-row justify-between items-start gap-4 md:gap-6 mb-6 md:mb-10 relative z-10">
+            <div className="space-y-1 w-full order-2 sm:order-1">
+              <p className="text-[9px] md:text-xs font-bold uppercase tracking-widest text-on-surface-variant/60">Meaning</p>
+              <h2 className="text-xl md:text-4xl font-bold font-headline text-on-surface break-words leading-tight">{word.definitions?.[0]?.meaning}</h2>
             </div>
-            <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 w-full sm:w-auto overflow-x-auto no-scrollbar">
+            <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 w-full sm:w-auto overflow-x-auto no-scrollbar order-1 sm:order-2">
               <div className="flex items-center gap-2 md:gap-3 shrink-0">
                 <span className="px-1.5 md:px-2 py-0.5 md:py-1 rounded-md bg-surface-container-high/50 text-on-surface-variant text-[9px] md:text-[10px] font-medium font-mono truncate max-w-[80px] md:max-w-none">{word.phonetic_uk || ''}</span>
                 <button className="flex items-center gap-1 md:gap-1.5 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-surface-container-low text-primary hover:bg-primary hover:text-white transition-all">
@@ -132,23 +132,23 @@ const WriteMode = ({ word, onNext, onPrev, progress, total, onWordLearned }) => 
               </div>
             </div>
           </div>
-          <div className="p-6 md:p-8 bg-surface-container-low rounded-2xl border-l-4 border-primary/20 relative z-10">
-            <p className="text-on-surface-variant text-[10px] md:text-xs font-bold uppercase tracking-widest mb-3 opacity-60">Example sentence</p>
+          <div className="p-4 md:p-8 bg-surface-container-low rounded-xl md:rounded-2xl border-l-4 border-primary/20 relative z-10">
+            <p className="text-on-surface-variant text-[9px] md:text-xs font-bold uppercase tracking-widest mb-2 md:mb-3 opacity-60">Example sentence</p>
             {hasHtmlContent(word.definitions?.[0]?.example) ? (
-              <div className="text-lg md:text-xl font-headline leading-relaxed text-on-surface" dangerouslySetInnerHTML={{ __html: word.definitions[0].example }} />
+              <div className="text-base md:text-xl font-headline leading-relaxed text-on-surface" dangerouslySetInnerHTML={{ __html: word.definitions[0].example }} />
             ) : (
-              <p className="text-lg md:text-xl font-headline leading-relaxed text-on-surface-variant italic">No example available</p>
+              <p className="text-base md:text-xl font-headline leading-relaxed text-on-surface-variant italic">No example available</p>
             )}
           </div>
         </div>
 
         {/* Input Area */}
-        <div className="md:col-span-12 lg:col-span-5 flex flex-col gap-6">
-          <div className={`bg-white rounded-2xl p-6 md:p-8 shadow-sm border ${borderClass} transition-all duration-300 flex flex-col h-full`}>
-            <label className="text-on-surface-variant text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4" htmlFor="answer">Your Answer</label>
+        <div className="md:col-span-12 lg:col-span-5 flex flex-col gap-4 md:gap-6">
+          <div className={`bg-white rounded-xl md:rounded-2xl p-6 md:p-8 shadow-sm border ${borderClass} transition-all duration-300 flex flex-col h-full`}>
+            <label className="text-on-surface-variant text-[9px] md:text-xs font-bold uppercase tracking-widest mb-3 md:mb-4" htmlFor="answer">Your Answer</label>
             <div className="relative flex-grow flex flex-col justify-center">
               <input
-                className={`w-full text-center text-2xl md:text-4xl font-headline font-bold ${statusColor} placeholder:text-surface-container-high border-none focus:ring-0 bg-transparent py-6 md:py-8 outline-none transition-colors duration-300`}
+                className={`w-full text-center text-xl md:text-4xl font-headline font-bold ${statusColor} placeholder:text-surface-container-high border-none focus:ring-0 bg-transparent py-4 md:py-8 outline-none transition-colors duration-300`}
                 id="answer" placeholder="Type here..." type="text" autoComplete="off"
                 value={answer}
                 disabled={status === 'correct' || status === 'close'}

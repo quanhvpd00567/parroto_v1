@@ -66,49 +66,49 @@ const FlashcardMode = ({ word, onNext, onPrev, progress, total }) => {
                 <span className="inline-block px-3 py-1 md:px-4 md:py-1.5 bg-surface-container-high text-on-primary-fixed-variant rounded-full text-[9px] md:text-[10px] font-bold font-headline mb-3 md:mb-4 tracking-wide uppercase">
                   {word.definitions?.[0]?.type || 'WORD'}
                 </span>
-                <h2 className="text-2xl md:text-6xl font-headline font-extrabold text-primary mb-2 md:mb-3 tracking-tighter break-words">{word.term}</h2>
-                <div className="flex justify-center gap-3 md:gap-4 mt-1 md:mt-4">
-                  <div className="flex flex-col gap-1.5 md:gap-2 items-center w-full">
+                <h2 className="text-3xl sm:text-5xl md:text-6xl font-headline font-extrabold text-primary mb-2 md:mb-3 tracking-tighter break-words px-4 leading-tight">{word.term}</h2>
+                <div className="flex justify-center gap-3 md:gap-4 mt-2 md:mt-4">
+                  <div className="flex flex-col gap-2 md:gap-2 items-center w-full">
                     <div className="flex items-center gap-2 md:gap-3">
                       <button
-                        className="flex items-center gap-1.5 md:gap-2 px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-surface-container-high hover:bg-primary-fixed transition-colors group/audio"
+                        className="flex items-center gap-1.5 md:gap-2 px-2.5 py-1 md:px-3 md:py-1.5 rounded-full bg-surface-container-high hover:bg-primary-fixed transition-colors group/audio"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <span className="material-symbols-outlined text-[14px] md:text-base text-primary group-hover/audio:scale-110 transition-transform">volume_up</span>
-                        <span className="text-[8px] md:text-[10px] font-bold font-headline text-on-surface-variant group-hover/audio:text-primary">UK</span>
+                        <span className="text-[9px] md:text-[10px] font-bold font-headline text-on-surface-variant group-hover/audio:text-primary">UK</span>
                       </button>
-                      <span className="text-[8px] md:text-[10px] font-mono text-on-surface-variant/60 truncate max-w-[100px] md:max-w-none">{word.phonetic_uk || ''}</span>
+                      <span className="text-[9px] md:text-[10px] font-mono text-on-surface-variant/60 truncate max-w-[100px] md:max-w-none">{word.phonetic_uk || ''}</span>
                     </div>
                     <div className="flex items-center gap-2 md:gap-3">
                       <button
-                        className="flex items-center gap-1.5 md:gap-2 px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-surface-container-high hover:bg-primary-fixed transition-colors group/audio"
+                        className="flex items-center gap-1.5 md:gap-2 px-2.5 py-1 md:px-3 md:py-1.5 rounded-full bg-surface-container-high hover:bg-primary-fixed transition-colors group/audio"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <span className="material-symbols-outlined text-[14px] md:text-base text-primary group-hover/audio:scale-110 transition-transform">volume_up</span>
-                        <span className="text-[8px] md:text-[10px] font-bold font-headline text-on-surface-variant group-hover/audio:text-primary">US</span>
+                        <span className="text-[9px] md:text-[10px] font-bold font-headline text-on-surface-variant group-hover/audio:text-primary">US</span>
                       </button>
-                      <span className="text-[8px] md:text-[10px] font-mono text-on-surface-variant/60 truncate max-w-[100px] md:max-w-none">{word.phonetic_us || ''}</span>
+                      <span className="text-[9px] md:text-[10px] font-mono text-on-surface-variant/60 truncate max-w-[100px] md:max-w-none">{word.phonetic_us || ''}</span>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Flip Hint */}
-              <div className="absolute bottom-8 flex flex-col items-center gap-1 opacity-40 group-hover:opacity-100 transition-opacity">
-                <span className="material-symbols-outlined text-2xl">touch_app</span>
-                <span className="text-[9px] font-bold tracking-widest uppercase">Click to flip</span>
+              <div className="absolute bottom-4 md:bottom-8 flex flex-col items-center gap-1 opacity-40 group-hover:opacity-100 transition-opacity">
+                <span className="material-symbols-outlined text-xl md:text-2xl">touch_app</span>
+                <span className="text-[8px] md:text-[9px] font-bold tracking-widest uppercase">Click to flip</span>
               </div>
             </div>
 
             {/* Back Face */}
             <div className="absolute inset-0 h-full w-full bg-surface-container-lowest rounded-[1.5rem] md:rounded-[2.5rem] ambient-shadow flex flex-col items-center justify-center p-6 md:p-8 border border-outline-variant/15 overflow-hidden backface-hidden rotate-y-180">
               <div className="text-center px-4 md:px-6">
-                <h3 className="text-xl md:text-3xl font-headline font-bold text-primary mb-3 md:mb-4">{word.definitions?.[0]?.meaning}</h3>
-                <p className="text-on-surface-variant text-sm md:text-base italic leading-relaxed">{word.definitions?.[0]?.explanation}</p>
+                <h3 className="text-xl md:text-3xl font-headline font-bold text-primary mb-3 md:mb-4 break-words">{word.definitions?.[0]?.meaning}</h3>
+                <p className="text-sm md:text-base text-on-surface-variant italic leading-relaxed line-clamp-4 md:line-clamp-none">{word.definitions?.[0]?.explanation}</p>
               </div>
 
               {/* Flip Hint */}
-              <div className="absolute bottom-6 md:bottom-8 flex flex-col items-center gap-1 opacity-40 group-hover:opacity-100 transition-opacity">
+              <div className="absolute bottom-4 md:bottom-8 flex flex-col items-center gap-1 opacity-40 group-hover:opacity-100 transition-opacity">
                 <span className="material-symbols-outlined text-xl md:text-2xl">touch_app</span>
                 <span className="text-[8px] md:text-[9px] font-bold tracking-widest uppercase whitespace-nowrap">Click to flip</span>
               </div>
