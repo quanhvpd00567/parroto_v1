@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ShareModal from './ShareModal';
 
 const WordDetail = ({ word }) => {
+  const [showShareModal, setShowShareModal] = useState(false);
   if (!word) return (
     <div className="col-span-12 md:col-span-7 lg:col-span-8 flex items-center justify-center bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 min-h-[400px]">
       <p className="text-slate-500 font-medium">Select a word to view details</p>
@@ -27,12 +29,21 @@ const WordDetail = ({ word }) => {
                 </span>
               )}
             </div>
-            <div className="flex gap-2">
-              <button className="p-3 rounded-full hover:bg-surface-container-low text-primary transition-all">
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+            <div className="flex gap-3">
+              <button className="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-container-low text-outline hover:text-primary hover:bg-primary/5 transition-all group">
+                <span className="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">star</span>
               </button>
-              <button className="p-3 rounded-full hover:bg-surface-container-low text-outline transition-all">
-                <span className="material-symbols-outlined">share</span>
+              <button className="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-container-low text-outline hover:text-green-600 hover:bg-green-50 transition-all group">
+                <span className="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">check_circle</span>
+              </button>
+              <button
+                onClick={() => setShowShareModal(true)}
+                className="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-container-low text-outline hover:text-blue-600 hover:bg-blue-50 transition-all group"
+              >
+                <span className="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">share</span>
+              </button>
+              <button className="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-container-low text-outline hover:text-red-600 hover:bg-red-50 transition-all group">
+                <span className="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">delete</span>
               </button>
             </div>
           </div>
@@ -118,6 +129,13 @@ const WordDetail = ({ word }) => {
           )}
         </div>
       </div>
+
+      {showShareModal && (
+        <ShareModal
+          word={word}
+          onClose={() => setShowShareModal(false)}
+        />
+      )}
     </div>
   );
 };
