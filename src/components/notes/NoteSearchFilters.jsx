@@ -6,7 +6,7 @@ const NoteSearchFilters = ({
   onSearchClick
 }) => {
   return (
-    <div className="flex flex-col md:flex-row gap-4 mb-10 items-center justify-between">
+    <div className="flex flex-col md:flex-row gap-4 mb-2 items-center justify-between">
       <div className="relative flex-grow max-w-xl w-full">
         <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/40">
           search

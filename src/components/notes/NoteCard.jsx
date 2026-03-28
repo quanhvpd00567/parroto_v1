@@ -22,7 +22,7 @@ const NoteCard = ({ note, onDelete, loading }) => {
   };
 
   return (
-    <div className="bg-surface-container-lowest rounded-2xl p-6 md:p-8 shadow-sm border border-outline-variant/15 hover:shadow-md transition-shadow group relative">
+    <div className="bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/15 hover:shadow-md transition-shadow group relative">
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1 space-y-4">
           {/* Category + Date */}

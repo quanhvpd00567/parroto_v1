@@ -122,7 +122,7 @@ const MyNotesPage = () => {
 
     return (
       <div className="space-y-12">
-        <div className="flex flex-col gap-4 max-w-3xl mx-auto">
+        <div className="flex flex-col gap-4 max-w-5xl mx-auto">
           {notes.map((note) => (
             <NoteCard
               key={note.id}
@@ -138,14 +138,14 @@ const MyNotesPage = () => {
             <button
               onClick={handleLoadMore}
               disabled={loading}
-              className="group flex items-center gap-3 px-8 py-4 rounded-2xl bg-surface-container-low hover:bg-primary hover:text-white transition-all duration-300 font-bold text-sm shadow-sm hover:shadow-xl hover:shadow-primary/20 disabled:opacity-50"
+              className="group flex items-center gap-2 px-6 py-3 rounded-xl border border-outline-variant/30 hover:border-primary/50 hover:bg-primary/5 text-primary transition-all duration-300 font-bold text-sm active:scale-95 shadow-sm disabled:opacity-50"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
               ) : (
-                <span className="material-symbols-outlined text-xl group-hover:rotate-180 transition-transform duration-500">history</span>
+                <span className="material-symbols-outlined text-xl transition-transform duration-500">expand_more</span>
               )}
-              <span>Load older notes</span>
+              <span>Show More</span>
             </button>
           </div>
         )}
@@ -156,7 +156,7 @@ const MyNotesPage = () => {
   return (
     <DashboardLayout>
       <div className="max-w-7xl mx-auto px-4 py-8 md:px-8 md:py-12">
-        <div className="flex flex-col gap-8 mb-12">
+        <div className="flex flex-col gap-8 mb-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-low rounded-full">
