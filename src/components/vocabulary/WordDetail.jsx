@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ShareModal from './ShareModal';
+import { hasHtmlContent } from '../../utils/html';
 
 const WordDetail = ({ word, actionLoading, onAction }) => {
+  const [showShareModal, setShowShareModal] = useState(false);
   if (!word) return (
     <div className="col-span-12 md:col-span-7 lg:col-span-8 flex items-center justify-center bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 min-h-[400px]">
       <p className="text-slate-500 font-medium">Select a word to view details</p>
@@ -41,6 +44,12 @@ const WordDetail = ({ word, actionLoading, onAction }) => {
                 className="p-3 rounded-full hover:bg-surface-container-low text-green-600 transition-all disabled:opacity-50"
                 title="Mark as learned">
                 <span className="material-symbols-outlined">check_circle</span>
+              </button>
+              <button
+                onClick={() => setShowShareModal(true)}
+                className="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-container-low text-outline hover:text-blue-600 hover:bg-blue-50 transition-all group"
+              >
+                <span className="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">share</span>
               </button>
               <button onClick={() => onAction?.('remove', word.id)} disabled={isLoading}
                 className="p-3 rounded-full hover:bg-surface-container-low text-error transition-all disabled:opacity-50"
@@ -90,7 +99,7 @@ const WordDetail = ({ word, actionLoading, onAction }) => {
                     {def.explanation && (
                       <p className="text-on-surface-variant mt-2 italic font-body">{def.explanation}</p>
                     )}
-                    {def.example && (
+                    {hasHtmlContent(def.example) && (
                       <div className="mt-4 p-5 rounded-2xl bg-surface-container-low flex gap-4">
                         <div>
                           <div
@@ -122,6 +131,13 @@ const WordDetail = ({ word, actionLoading, onAction }) => {
           )}
         </div>
       </div>
+
+      {showShareModal && (
+        <ShareModal
+          word={word}
+          onClose={() => setShowShareModal(false)}
+        />
+      )}
     </div>
   );
 };

@@ -15,11 +15,18 @@ const POS_LABELS = {
   preposition: 'Preposition', conjunction: 'Conjunction', pronoun: 'Pronoun', interjection: 'Interjection',
 };
 
+function isEmptyHtml(html) {
+  if (!html) return true;
+  const stripped = html.replace(/<[^>]*>/g, '').trim();
+  return stripped.length === 0;
+}
+
 function mapVocabItem(item) {
   const vocab = item.vocabulary;
   const imageUrl = vocab.image_url
     ? (vocab.image_url.startsWith('http') ? vocab.image_url : `${API_BASE}${vocab.image_url}`)
     : null;
+  const example = isEmptyHtml(vocab.example_sentence) ? '' : vocab.example_sentence;
   return {
     id: vocab._id,
     term: vocab.word,
@@ -34,7 +41,7 @@ function mapVocabItem(item) {
       type: POS_LABELS[vocab.part_of_speech] || vocab.part_of_speech,
       meaning: vocab.definition,
       explanation: '',
-      example: vocab.example_sentence || '',
+      example,
       exampleTranslation: '',
     }],
   };

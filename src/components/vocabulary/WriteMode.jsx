@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { hasHtmlContent } from '../../utils/html';
 
 const WriteMode = ({ word, onNext, onPrev, progress, total, streak = 14, accuracy = 94 }) => {
   const [answer, setAnswer] = useState('');
@@ -110,10 +111,14 @@ const WriteMode = ({ word, onNext, onPrev, progress, total, streak = 14, accurac
           </div>
           <div className="p-8 bg-surface-container-low rounded-2xl border-l-4 border-primary/20 relative z-10">
             <p className="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-3 opacity-60">Example sentence</p>
-            <div
-              className="text-xl font-headline leading-relaxed text-on-surface"
-              dangerouslySetInnerHTML={{ __html: word.definitions?.[0]?.example || '' }}
-            />
+            {hasHtmlContent(word.definitions?.[0]?.example) ? (
+              <div
+                className="text-xl font-headline leading-relaxed text-on-surface"
+                dangerouslySetInnerHTML={{ __html: word.definitions[0].example }}
+              />
+            ) : (
+              <p className="text-xl font-headline leading-relaxed text-on-surface-variant italic">No example available</p>
+            )}
           </div>
         </div>
 
