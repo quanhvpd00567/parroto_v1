@@ -10,6 +10,7 @@ import LandingPage from './pages/LandingPage';
 import LessonLibraryPage from './pages/LessonLibraryPage';
 import PracticeSessionPage from './pages/PracticeSessionPage';
 import EditProfilePage from './pages/EditProfilePage';
+import ProfilePage from './pages/ProfilePage';
 import VocabularyPage from './pages/VocabularyPage';
 import RegisterPage from './pages/RegisterPage';
 import MyNotesPage from './pages/MyNotesPage';
@@ -28,7 +29,8 @@ function App() {
           <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
           <Route path="/lessons" element={<ProtectedRoute><LessonLibraryPage /></ProtectedRoute>} />
           <Route path="/practice" element={<ProtectedRoute><PracticeSessionPage /></ProtectedRoute>} />
-          <Route path="/profile" element={<ProtectedRoute><EditProfilePage /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+          <Route path="/profile/edit" element={<ProtectedRoute><EditProfilePage /></ProtectedRoute>} />
           <Route path="/my-vocabulary" element={<ProtectedRoute><VocabularyPage /></ProtectedRoute>} />
         </Routes>
       </Router>

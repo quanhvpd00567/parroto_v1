@@ -20,28 +20,28 @@ const DashboardPage = () => {
         <p className="text-on-surface-variant text-lg">You've mastered 14 new phrases since your last visit. Keep it up!</p>
       </header>
 
-      {/* Bento Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* My Progress Section (Large) */}
-        <section className="lg:col-span-2 flex flex-col gap-6">
+      {/* Stacked Layout */}
+      <div className="flex flex-col gap-12 max-w-4xl mx-auto">
+        {/* My Progress Section */}
+        <section className="flex flex-col gap-6">
           <ProgressCard />
+        </section>
 
-          {/* Continue Learning Section */}
-          <div className="flex flex-col gap-6">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-on-surface">Continue Learning</h2>
-              <button className="text-primary font-semibold hover:underline text-sm">View all modules</button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {lessons.map((lesson, index) => (
-                <LessonCard key={index} {...lesson} />
-              ))}
-            </div>
+        {/* Continue Learning Section */}
+        <section className="flex flex-col gap-6">
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl font-bold text-on-surface">Continue Learning</h2>
+            <button className="text-primary font-semibold hover:underline text-sm">View all modules</button>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {lessons.map((lesson, index) => (
+              <LessonCard key={index} {...lesson} />
+            ))}
           </div>
         </section>
 
-        {/* Sidebar Widgets */}
-        <section className="flex flex-col gap-8">
+        {/* Action Widgets */}
+        <section className="flex flex-col gap-12">
           <DailyGoals />
           <RecommendationCard />
         </section>

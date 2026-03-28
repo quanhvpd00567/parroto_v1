@@ -80,17 +80,17 @@ const Navbar = () => {
                 <p className="text-xs text-slate-500 mt-0.5">{userProfile?.email || ''}</p>
               </div>
               <div className="py-1">
-                <Link to="/profile" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
-                  <span className="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary transition-colors">account_circle</span>
-                  Profilee
+                <Link to="/my-notes" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
+                  <span className="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary transition-colors">sticky_note_2</span>
+                  My Notes
                 </Link>
                 <Link to="/my-vocabulary" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
                   <span className="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary transition-colors">book_2</span>
                   My Vocabulary
                 </Link>
-                <Link to="/my-notes" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
-                  <span className="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary transition-colors">sticky_note_2</span>
-                  My Note
+                <Link to="/profile" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
+                  <span className="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary transition-colors">account_circle</span>
+                  Profile
                 </Link>
               </div>
               <div className="border-t border-slate-100">
