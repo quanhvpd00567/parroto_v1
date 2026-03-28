@@ -132,7 +132,7 @@ const VocabularyPage = () => {
   };
 
   return (
-    <DashboardLayout hideSidebar={true}>
+    <DashboardLayout>
       <div className="bg-background">
         <div className="max-w-7xl mx-auto md:p-8">
           {/* Header */}
