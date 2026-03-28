@@ -120,7 +120,7 @@ const VocabularyPage = () => {
       case 'flashcard':
         return <FlashcardMode key={activeWord?.id} word={activeWord} onNext={handleNext} onPrev={handlePrev} progress={activeWordIndex + 1} total={words.length} />;
       case 'write':
-        return <WriteMode key={activeWord?.id} word={activeWord} onNext={handleNext} onPrev={handlePrev} progress={activeWordIndex + 1} total={words.length} />;
+        return <WriteMode key={activeWord?.id} word={activeWord} onNext={handleNext} onPrev={handlePrev} progress={activeWordIndex + 1} total={words.length} onWordLearned={refetch} />;
       default:
         return (
           <div className="grid grid-cols-12 gap-8 w-full">

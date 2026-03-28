@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { hasHtmlContent } from '../../utils/html';
 import vocabularyService from '../../services/vocabularyService';
 
-const WriteMode = ({ word, onNext, onPrev, progress, total }) => {
+const WriteMode = ({ word, onNext, onPrev, progress, total, onWordLearned }) => {
   const [answer, setAnswer] = useState('');
   const [status, setStatus] = useState('idle'); // idle | correct | close | wrong
   const [xpEarned, setXpEarned] = useState(0);
@@ -38,11 +38,15 @@ const WriteMode = ({ word, onNext, onPrev, progress, total }) => {
   };
 
   const handleNext = () => {
+    const wasCorrect = status === 'correct' || status === 'close';
     setAnswer('');
     setStatus('idle');
     setXpEarned(0);
     setExpected('');
     onNext();
+    if (wasCorrect && onWordLearned) {
+      onWordLearned();
+    }
   };
 
   const handlePrev = () => {
