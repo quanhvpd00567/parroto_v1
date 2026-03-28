@@ -1,9 +1,18 @@
 import React from 'react';
 
+const levelColors = {
+  A1: 'bg-green-100 text-green-800',
+  A2: 'bg-lime-100 text-lime-800',
+  B1: 'bg-blue-100 text-blue-800',
+  B2: 'bg-indigo-100 text-indigo-800',
+  C1: 'bg-orange-100 text-orange-800',
+  C2: 'bg-red-100 text-red-800',
+};
+
 const WordList = ({ words, activeWord, onSelectWord }) => {
   return (
     <div className="col-span-12 md:col-span-5 lg:col-span-4 space-y-6">
-      <div className="space-y-3 h-[calc(100vh-16rem)] overflow-y-auto pr-2 custom-scrollbar">
+      <div className="space-y-3 h-[calc(100vh-20rem)] overflow-y-auto pr-2 custom-scrollbar">
         {words.map((word) => (
           <div
             key={word.id}
@@ -19,15 +28,13 @@ const WordList = ({ words, activeWord, onSelectWord }) => {
                 <h3 className={`text-lg font-bold ${activeWord?.id === word.id ? 'text-primary' : 'text-on-surface'}`}>
                   {word.term}
                 </h3>
-                <p className="text-sm text-on-surface-variant font-body">{word.phonetic}</p>
+                <p className="text-sm text-on-surface-variant font-body">{word.phonetic_us || word.phonetic_uk || ''}</p>
               </div>
-              <span className={`px-2 py-0.5 text-[10px] font-bold rounded uppercase ${
-                word.level === 'A1' ? 'bg-primary-fixed text-on-primary-fixed-variant' :
-                word.level === 'B2' ? 'bg-tertiary-fixed text-on-tertiary-fixed-variant' :
-                'bg-secondary-fixed text-on-secondary-fixed-variant'
-              }`}>
-                {word.level}
-              </span>
+              {word.level && word.level !== '—' && (
+                <span className={`px-2 py-0.5 text-[10px] font-bold rounded uppercase ${levelColors[word.level] || 'bg-gray-100 text-gray-600'}`}>
+                  {word.level}
+                </span>
+              )}
             </div>
           </div>
         ))}

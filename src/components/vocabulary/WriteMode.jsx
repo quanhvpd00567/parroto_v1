@@ -93,14 +93,14 @@ const WriteMode = ({ word, onNext, onPrev, progress, total, streak = 14, accurac
             </div>
             <div className="flex flex-col items-end gap-2">
               <div className="flex items-center gap-3">
-                <span className="px-2 py-1 rounded-md bg-surface-container-high/50 text-on-surface-variant text-[10px] font-medium font-mono tracking-wide">{word.phonetic}</span>
+                <span className="px-2 py-1 rounded-md bg-surface-container-high/50 text-on-surface-variant text-[10px] font-medium font-mono tracking-wide">{word.phonetic_uk || ''}</span>
                 <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low text-primary hover:bg-primary hover:text-white transition-all">
                   <span className="material-symbols-outlined text-[18px]">volume_up</span>
                   <span className="text-[10px] font-bold uppercase tracking-wider">UK</span>
                 </button>
               </div>
               <div className="flex items-center gap-3">
-                <span className="px-2 py-1 rounded-md bg-surface-container-high/50 text-on-surface-variant text-[10px] font-medium font-mono tracking-wide">{word.phonetic}</span>
+                <span className="px-2 py-1 rounded-md bg-surface-container-high/50 text-on-surface-variant text-[10px] font-medium font-mono tracking-wide">{word.phonetic_us || ''}</span>
                 <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low text-primary hover:bg-primary hover:text-white transition-all">
                   <span className="material-symbols-outlined text-[18px]">volume_up</span>
                   <span className="text-[10px] font-bold uppercase tracking-wider">US</span>

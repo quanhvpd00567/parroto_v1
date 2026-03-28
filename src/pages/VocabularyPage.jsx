@@ -4,114 +4,137 @@ import WordList from '../components/vocabulary/WordList';
 import WordDetail from '../components/vocabulary/WordDetail';
 import FlashcardMode from '../components/vocabulary/FlashcardMode';
 import WriteMode from '../components/vocabulary/WriteMode';
+import { useVocabularyList } from '../hooks/useVocabulary';
 
-const MOCK_WORDS = [
-  {
-    id: 1,
-    term: 'work',
-    phonetic: '/wə:k/',
-    level: 'A1',
-    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDyyNW0RicgmB60kjjzILc660jgqjKHaZru8RR3mG-WGr8ckJve1RU0PeZYAnTv6JCNJ9E7gy3_hzNkRe3jyA3Uo1Pc6E-esVwtbvxxPEh1X6tAmyl8xruIKR2pMk2-_8jXMW83_bQTYiIN3qt400pHRbQ6PanUMs5ENrEcQTZNLRrz_nm5h28eClnWtap3ppdXq5hA8OIG1Qj0sLX5Q8QRkNVUECy9XoUHGr3R8Bxk8sQhKan_w1CRxxROlWYEixwUgvStotE21iG-',
+const LEVEL_OPTIONS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+
+const POS_LABELS = {
+  noun: 'Noun',
+  verb: 'Verb',
+  adjective: 'Adjective',
+  adverb: 'Adverb',
+  preposition: 'Preposition',
+  conjunction: 'Conjunction',
+  pronoun: 'Pronoun',
+  interjection: 'Interjection',
+};
+
+function mapApiToWord(item) {
+  const imageUrl = item.image_url
+    ? (item.image_url.startsWith('http') ? item.image_url : `${API_BASE}${item.image_url}`)
+    : null;
+
+  return {
+    id: item._id,
+    term: item.word,
+    phonetic_us: item.pronunciation_us || null,
+    phonetic_uk: item.pronunciation_uk || null,
+    audio_us: item.pronunciation_audio_us || null,
+    audio_uk: item.pronunciation_audio_uk || null,
+    level: item.level || '—',
+    imageUrl,
     definitions: [
       {
-        type: 'Danh từ',
-        meaning: 'Công việc, việc làm',
-        explanation: 'Activity involving mental or physical effort done in order to achieve a purpose or result.',
-        example: 'He is looking for <span class="text-primary font-bold">work</span>.',
-        exampleTranslation: 'Anh ấy đang tìm kiếm công việc.'
+        type: POS_LABELS[item.part_of_speech] || item.part_of_speech,
+        meaning: item.definition,
+        explanation: '',
+        example: item.example_sentence || '',
+        exampleTranslation: '',
       },
-      {
-        type: 'Động từ',
-        meaning: 'Làm việc, lao động',
-        explanation: 'Be engaged in physical or mental activity in order to achieve a result.',
-        example: 'I <span class="text-secondary font-bold">work</span> at a bank.',
-        exampleTranslation: 'Tôi làm việc tại một ngân hàng.'
-      }
-    ]
-  },
-  {
-    id: 2,
-    term: 'efficient',
-    phonetic: '/ɪˈfɪʃ.ənt/',
-    level: 'B2',
-    definitions: [
-      {
-        type: 'Adjective',
-        meaning: 'Hiệu quả',
-        explanation: 'Achieving maximum productivity with minimum wasted effort or expense.',
-        example: 'We need to be more <span class="text-primary font-bold">efficient</span>.',
-        exampleTranslation: 'Chúng ta cần phải làm việc hiệu quả hơn.'
-      }
-    ]
-  },
-  {
-    id: 3,
-    term: 'sustainable',
-    phonetic: '/səˈsteɪ.nə.bəl/',
-    level: 'C1',
-    definitions: [
-      {
-        type: 'Adjective',
-        meaning: 'Bền vững',
-        explanation: 'Able to be maintained at a certain rate or level.',
-        example: 'The growth is <span class="text-primary font-bold">sustainable</span>.',
-        exampleTranslation: 'Sự tăng trưởng này là bền vững.'
-      }
-    ]
-  },
-  {
-    id: 4,
-    term: 'thrive',
-    phonetic: '/θraɪv/',
-    level: 'C1',
-    definitions: [
-      {
-        type: 'Verb',
-        meaning: 'Phát triển mạnh',
-        explanation: 'Prosper; flourish.',
-        example: 'The company continues to <span class="text-primary font-bold">thrive</span>.',
-        exampleTranslation: 'Công ty tiếp tục phát triển mạnh mẽ.'
-      }
-    ]
-  }
-];
+    ],
+  };
+}
 
 const VocabularyPage = () => {
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [studyMode, setStudyMode] = useState('list');
+  const [searchValue, setSearchValue] = useState('');
+  const [levelFilter, setLevelFilter] = useState('');
+  const [params, setParams] = useState({ page: 1, limit: 50 });
 
-  const activeWord = useMemo(() => MOCK_WORDS[activeWordIndex], [activeWordIndex]);
+  const { data, loading, error } = useVocabularyList(params);
+
+  const words = useMemo(() => {
+    if (!data?.data) return [];
+    return data.data.map(mapApiToWord);
+  }, [data]);
+
+  const activeWord = useMemo(() => words[activeWordIndex] || null, [words, activeWordIndex]);
+
+  const handleSearch = () => {
+    setActiveWordIndex(0);
+    setParams((prev) => ({
+      ...prev,
+      page: 1,
+      search: searchValue || undefined,
+    }));
+  };
+
+  const handleLevelFilter = (level) => {
+    setLevelFilter(level);
+    setActiveWordIndex(0);
+    setParams((prev) => ({
+      ...prev,
+      page: 1,
+      level: level || undefined,
+    }));
+  };
 
   const handleNext = () => {
-    setActiveWordIndex((prev) => (prev + 1) % MOCK_WORDS.length);
+    setActiveWordIndex((prev) => (prev + 1) % words.length);
   };
 
   const handlePrev = () => {
-    setActiveWordIndex((prev) => (prev - 1 + MOCK_WORDS.length) % MOCK_WORDS.length);
+    setActiveWordIndex((prev) => (prev - 1 + words.length) % words.length);
   };
 
   const renderContent = () => {
+    if (loading) {
+      return (
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary"></div>
+        </div>
+      );
+    }
+
+    if (error) {
+      return (
+        <div className="flex items-center justify-center min-h-[400px]">
+          <p className="text-error font-medium">{error}</p>
+        </div>
+      );
+    }
+
+    if (words.length === 0) {
+      return (
+        <div className="flex items-center justify-center min-h-[400px]">
+          <p className="text-on-surface-variant font-medium">No vocabulary found.</p>
+        </div>
+      );
+    }
+
     switch (studyMode) {
       case 'flashcard':
         return (
           <FlashcardMode
-            key={activeWord.id}
+            key={activeWord?.id}
             word={activeWord}
             onNext={handleNext}
             onPrev={handlePrev}
             progress={activeWordIndex + 1}
-            total={MOCK_WORDS.length}
+            total={words.length}
           />
         );
       case 'write':
         return (
           <WriteMode
-            key={activeWord.id}
+            key={activeWord?.id}
             word={activeWord}
             onNext={handleNext}
             onPrev={handlePrev}
             progress={activeWordIndex + 1}
-            total={MOCK_WORDS.length}
+            total={words.length}
           />
         );
       case 'list':
@@ -119,9 +142,9 @@ const VocabularyPage = () => {
         return (
           <div className="grid grid-cols-12 gap-8 w-full">
             <WordList
-              words={MOCK_WORDS}
+              words={words}
               activeWord={activeWord}
-              onSelectWord={(word) => setActiveWordIndex(MOCK_WORDS.indexOf(word))}
+              onSelectWord={(word) => setActiveWordIndex(words.indexOf(word))}
             />
             <WordDetail word={activeWord} />
           </div>
@@ -138,44 +161,59 @@ const VocabularyPage = () => {
             <div className="space-y-1">
               <h1 className="text-3xl font-extrabold tracking-tight text-on-surface font-headline">My Vocabulary</h1>
               <div className="text-xs font-bold text-outline uppercase tracking-wider">
-                {studyMode === 'list' ? `${MOCK_WORDS.length} words total` : 'Mastery Session'}
+                {studyMode === 'list' ? `${data?.meta?.total ?? 0} words total` : 'Mastery Session'}
               </div>
             </div>
             <div className="flex items-center gap-2 bg-surface-container-low p-1.5 rounded-2xl w-fit shadow-sm">
+              {[
+                { key: 'list', icon: 'list_alt', label: 'List' },
+                { key: 'flashcard', icon: 'style', label: 'Flashcard' },
+                { key: 'write', icon: 'edit_note', label: 'Write' },
+              ].map((mode) => (
+                <button
+                  key={mode.key}
+                  onClick={() => setStudyMode(mode.key)}
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all ${
+                    studyMode === mode.key
+                      ? 'bg-white text-primary shadow-sm'
+                      : 'text-on-surface-variant hover:bg-surface-container-high'
+                  }`}
+                >
+                  <span className={`material-symbols-outlined text-lg ${studyMode === mode.key ? 'filled' : ''}`}>{mode.icon}</span>
+                  <span>{mode.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Search & Filter */}
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                placeholder="Search vocabulary..."
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                className="px-4 py-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 w-60"
+              />
               <button
-                onClick={() => setStudyMode('list')}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all ${
-                  studyMode === 'list'
-                    ? 'bg-white text-primary shadow-sm'
-                    : 'text-on-surface-variant hover:bg-surface-container-high'
-                }`}
+                onClick={handleSearch}
+                className="px-4 py-2 rounded-xl bg-primary text-on-primary text-sm font-bold hover:opacity-90 transition-opacity"
               >
-                <span className={`material-symbols-outlined text-lg ${studyMode === 'list' ? 'filled' : ''}`}>list_alt</span>
-                <span>List</span>
-              </button>
-              <button
-                onClick={() => setStudyMode('flashcard')}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all ${
-                  studyMode === 'flashcard'
-                    ? 'bg-white text-primary shadow-sm'
-                    : 'text-on-surface-variant hover:bg-surface-container-high'
-                }`}
-              >
-                <span className={`material-symbols-outlined text-lg ${studyMode === 'flashcard' ? 'filled' : ''}`}>style</span>
-                <span>Flashcard</span>
-              </button>
-              <button
-                onClick={() => setStudyMode('write')}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all ${
-                  studyMode === 'write'
-                    ? 'bg-white text-primary shadow-sm'
-                    : 'text-on-surface-variant hover:bg-surface-container-high'
-                }`}
-              >
-                <span className={`material-symbols-outlined text-lg ${studyMode === 'write' ? 'filled' : ''}`}>edit_note</span>
-                <span>Write</span>
+                Search
               </button>
             </div>
+            <select
+              value={levelFilter}
+              onChange={(e) => handleLevelFilter(e.target.value)}
+              className="px-4 py-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+            >
+              <option value="">All Levels</option>
+              {LEVEL_OPTIONS.map((lvl) => (
+                <option key={lvl} value={lvl}>{lvl}</option>
+              ))}
+            </select>
           </div>
 
           <div>
@@ -183,12 +221,6 @@ const VocabularyPage = () => {
           </div>
         </main>
       </div>
-
-      {/* Mobile Navigation Placeholder for design consistency if needed, but DashboardLayout handles it */}
-      {/* FAB for quick action (only on mobile) */}
-      <button className="md:hidden fixed bottom-20 right-8 w-16 h-16 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center z-50 hover:scale-105 active:scale-95 transition-all">
-        <span className="material-symbols-outlined text-3xl">add</span>
-      </button>
     </DashboardLayout>
   );
 };

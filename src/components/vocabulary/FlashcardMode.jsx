@@ -68,14 +68,14 @@ const FlashcardMode = ({ word, onNext, onPrev, progress, total }) => {
                         <span className="material-symbols-outlined text-base text-primary group-hover/audio:scale-110 transition-transform">volume_up</span>
                         <span className="text-[10px] font-bold font-headline text-on-surface-variant group-hover/audio:text-primary">UK</span>
                       </button>
-                      <span className="text-[10px] font-mono text-on-surface-variant/60">{word.phonetic}</span>
+                      <span className="text-[10px] font-mono text-on-surface-variant/60">{word.phonetic_uk || ''}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <button className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high hover:bg-primary-fixed transition-colors group/audio">
                         <span className="material-symbols-outlined text-base text-primary group-hover/audio:scale-110 transition-transform">volume_up</span>
                         <span className="text-[10px] font-bold font-headline text-on-surface-variant group-hover/audio:text-primary">US</span>
                       </button>
-                      <span className="text-[10px] font-mono text-on-surface-variant/60">{word.phonetic}</span>
+                      <span className="text-[10px] font-mono text-on-surface-variant/60">{word.phonetic_us || ''}</span>
                     </div>
                   </div>
                 </div>
