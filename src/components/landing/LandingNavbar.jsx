@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LandingNavbar = () => {
   return (
@@ -12,8 +13,8 @@ const LandingNavbar = () => {
           <a className="text-slate-600 hover:text-primary transition-colors" href="#">Community</a>
         </div>
         <div className="flex items-center gap-4">
-          <button className="hidden md:block text-primary font-semibold px-4 py-2 hover:bg-surface-container-low transition-all duration-300 rounded-lg">Log In</button>
-          <button className="btn-gradient text-white px-6 py-2.5 rounded-full font-semibold shadow-lg hover:opacity-90 active:scale-95 transition-all">Sign Up</button>
+          <Link to="/login" className="hidden md:block text-primary font-semibold px-4 py-2 hover:bg-surface-container-low transition-all duration-300 rounded-lg">Log In</Link>
+          <Link to="/register" className="btn-gradient text-white px-6 py-2.5 rounded-full font-semibold shadow-lg hover:opacity-90 active:scale-95 transition-all">Sign Up</Link>
         </div>
       </div>
       <div className="bg-slate-100/50 h-[1px] w-full absolute bottom-0"></div>

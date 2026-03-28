@@ -70,9 +70,9 @@ const AuthLayout = ({ children, title, subtitle, sidebarImage, sidebarTitle, sid
             <p className="font-body text-sm tracking-wide text-slate-500 dark:text-slate-400">© 2024 Parroto. The Guided Luminous Path.</p>
           </div>
           <div className="flex gap-8">
-            <a className="font-body text-sm tracking-wide text-slate-500 dark:text-slate-400 hover:text-secondary transition-all" href="#">Privacy Policy</a>
-            <a className="font-body text-sm tracking-wide text-slate-500 dark:text-slate-400 hover:text-secondary transition-all" href="#">Terms of Service</a>
-            <a className="font-body text-sm tracking-wide text-slate-500 dark:text-slate-400 hover:text-secondary transition-all" href="#">Help Center</a>
+            <a className="font-body text-sm tracking-wide text-slate-500 dark:text-slate-400 hover:text-secondary transition-all" target='blank' href="/privacy-policy">Privacy Policy</a>
+            <a className="font-body text-sm tracking-wide text-slate-500 dark:text-slate-400 hover:text-secondary transition-all" target='blank' href="/terms-of-service">Terms of Service</a>
+            <a className="font-body text-sm tracking-wide text-slate-500 dark:text-slate-400 hover:text-secondary transition-all" target='blank' href="/help-center">Help Center</a>
           </div>
         </div>
       </footer>
