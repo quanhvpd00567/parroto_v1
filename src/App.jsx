@@ -16,6 +16,10 @@ import RegisterPage from './pages/RegisterPage';
 import MyNotesPage from './pages/MyNotesPage';
 import ShopPage from './pages/ShopPage';
 import MyGiftsPage from './pages/MyGiftsPage';
+import HelpCenterPage from './pages/HelpCenterPage';
+import ContactSupportPage from './pages/ContactSupportPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 
 function App() {
   return (
@@ -36,6 +40,10 @@ function App() {
           <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
           <Route path="/profile/edit" element={<ProtectedRoute><EditProfilePage /></ProtectedRoute>} />
           <Route path="/my-vocabulary" element={<ProtectedRoute><VocabularyPage /></ProtectedRoute>} />
+          <Route path="/help-center" element={<HelpCenterPage />} />
+          <Route path="/contact-support" element={<ContactSupportPage />} />
+          <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         </Routes>
       </Router>
     </AuthProvider>

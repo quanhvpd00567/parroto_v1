@@ -9,9 +9,9 @@ const Footer = () => {
           <p className="text-sm font-inter text-slate-500">© 2024 Parroto. Language Learning Reimagined.</p>
         </div>
         <div className="flex flex-wrap gap-x-8 gap-y-4 md:justify-end items-center">
-          <a className="text-sm font-inter text-slate-500 hover:text-blue-700 transition-colors" href="#">Privacy Policy</a>
-          <a className="text-sm font-inter text-slate-500 hover:text-blue-700 transition-colors" href="#">Terms of Service</a>
-          <a className="text-sm font-inter text-slate-500 hover:text-blue-700 transition-colors" href="#">Help Center</a>
+          <a className="text-sm font-inter text-slate-500 hover:text-blue-700 transition-colors" href="/privacy-policy">Privacy Policy</a>
+          <a className="text-sm font-inter text-slate-500 hover:text-blue-700 transition-colors" href="/terms-of-service">Terms of Service</a>
+          <a className="text-sm font-inter text-slate-500 hover:text-blue-700 transition-colors" href="/help-center">Help Center</a>
           <a className="text-sm font-inter text-slate-500 hover:text-blue-700 transition-colors" href="#">Methodology</a>
         </div>
       </div>
