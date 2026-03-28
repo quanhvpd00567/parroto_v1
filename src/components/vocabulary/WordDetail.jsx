@@ -78,7 +78,15 @@ const WordDetail = ({ word }) => {
                         def.type === 'Danh từ' ? 'text-primary' : 'text-secondary'
                       }`}>format_quote</span>
                       <div>
-                        <p className="text-on-surface font-medium font-body" dangerouslySetInnerHTML={{ __html: def.example }}></p>
+                        <p className="text-on-surface font-medium font-body">
+                          {def.example.split(/(<span.*?>.*?<\/span>)/g).map((part, i) => {
+                            if (part.startsWith('<span')) {
+                              const match = part.match(/<span class="(.*?)">(.*?)<\/span>/);
+                              if (match) return <span key={i} className={match[1]}>{match[2]}</span>;
+                            }
+                            return part;
+                          })}
+                        </p>
                         <p className="text-sm text-on-surface-variant mt-1 font-body">{def.exampleTranslation}</p>
                       </div>
                     </div>

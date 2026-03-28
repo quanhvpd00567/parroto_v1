@@ -2,7 +2,6 @@ import React, { useState, useMemo } from 'react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import WordList from '../components/vocabulary/WordList';
 import WordDetail from '../components/vocabulary/WordDetail';
-import VocabularySidebar from '../components/vocabulary/VocabularySidebar';
 import FlashcardMode from '../components/vocabulary/FlashcardMode';
 import WriteMode from '../components/vocabulary/WriteMode';
 
@@ -132,14 +131,56 @@ const VocabularyPage = () => {
 
   return (
     <DashboardLayout hideSidebar={true}>
-      <div className="flex -mx-6 md:-mx-12 -my-12 min-h-screen">
-        <VocabularySidebar
-          activeMode={studyMode}
-          onSelectMode={setStudyMode}
-          courseName="English Advanced"
-        />
-        <main className="flex-1 p-8 md:p-12">
-          {renderContent()}
+      <div className="min-h-screen bg-background p-8 md:p-12">
+        <main className="max-w-7xl mx-auto">
+          {/* Header & Mode Section */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6 border-b border-outline-variant/20 pb-6 w-full">
+            <div className="space-y-1">
+              <h1 className="text-3xl font-extrabold tracking-tight text-on-surface font-headline">My Vocabulary</h1>
+              <div className="text-xs font-bold text-outline uppercase tracking-wider">
+                {studyMode === 'list' ? `${MOCK_WORDS.length} words total` : 'Mastery Session'}
+              </div>
+            </div>
+            <div className="flex items-center gap-2 bg-surface-container-low p-1.5 rounded-2xl w-fit shadow-sm">
+              <button
+                onClick={() => setStudyMode('list')}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all ${
+                  studyMode === 'list'
+                    ? 'bg-white text-primary shadow-sm'
+                    : 'text-on-surface-variant hover:bg-surface-container-high'
+                }`}
+              >
+                <span className={`material-symbols-outlined text-lg ${studyMode === 'list' ? 'filled' : ''}`}>list_alt</span>
+                <span>List</span>
+              </button>
+              <button
+                onClick={() => setStudyMode('flashcard')}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all ${
+                  studyMode === 'flashcard'
+                    ? 'bg-white text-primary shadow-sm'
+                    : 'text-on-surface-variant hover:bg-surface-container-high'
+                }`}
+              >
+                <span className={`material-symbols-outlined text-lg ${studyMode === 'flashcard' ? 'filled' : ''}`}>style</span>
+                <span>Flashcard</span>
+              </button>
+              <button
+                onClick={() => setStudyMode('write')}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all ${
+                  studyMode === 'write'
+                    ? 'bg-white text-primary shadow-sm'
+                    : 'text-on-surface-variant hover:bg-surface-container-high'
+                }`}
+              >
+                <span className={`material-symbols-outlined text-lg ${studyMode === 'write' ? 'filled' : ''}`}>edit_note</span>
+                <span>Write</span>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            {renderContent()}
+          </div>
         </main>
       </div>
 

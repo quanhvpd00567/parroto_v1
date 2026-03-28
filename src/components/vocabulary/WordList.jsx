@@ -3,13 +3,6 @@ import React from 'react';
 const WordList = ({ words, activeWord, onSelectWord }) => {
   return (
     <div className="col-span-12 md:col-span-5 lg:col-span-4 space-y-6">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-extrabold tracking-tight font-headline text-on-surface">My Vocabulary</h1>
-        <button className="bg-primary text-on-primary px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 hover:opacity-90 transition-all active:scale-95 shadow-lg shadow-primary/20">
-          <span className="material-symbols-outlined text-sm">add</span>
-          NEW WORD
-        </button>
-      </div>
       <div className="space-y-3 h-[calc(100vh-16rem)] overflow-y-auto pr-2 custom-scrollbar">
         {words.map((word) => (
           <div
