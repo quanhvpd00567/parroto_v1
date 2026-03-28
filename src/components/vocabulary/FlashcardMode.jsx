@@ -36,26 +36,27 @@ const FlashcardMode = ({ word, onNext, onPrev, progress, total }) => {
           <span className="material-symbols-outlined text-2xl">arrow_back</span>
         </button>
 
-        {/* Main Card Container */}
+        {/* Main Card Container with 3D Flip */}
         <div
-          className="relative w-full max-w-xl aspect-[1.4/1] group cursor-pointer"
+          className="relative w-full max-w-xl aspect-[1.4/1] perspective-1000 group cursor-pointer"
           onClick={() => setIsFlipped(!isFlipped)}
         >
           {/* Background Layering for Depth */}
           <div className="absolute -inset-3 bg-surface-container-low rounded-[2.5rem] -rotate-1 scale-102 opacity-50"></div>
           <div className="absolute -inset-1 bg-surface-container-low rounded-[2.5rem] rotate-1 scale-101 opacity-80"></div>
 
-          {/* Main Card Container */}
-          <div className="relative h-full w-full bg-surface-container-lowest rounded-[2.5rem] ambient-shadow flex flex-col items-center justify-center p-8 border border-outline-variant/15 overflow-hidden">
-            {/* Card Actions (Top Right) */}
-            <div className="absolute top-6 right-6 flex gap-2">
-              <button className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
-                <span className="material-symbols-outlined">star</span>
-              </button>
-            </div>
+          {/* Flippable Card Wrapper */}
+          <div className={`relative w-full h-full transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
 
-            {/* Content */}
-            {!isFlipped ? (
+            {/* Front Face */}
+            <div className="absolute inset-0 w-full h-full bg-surface-container-lowest rounded-[2.5rem] ambient-shadow flex flex-col items-center justify-center p-8 border border-outline-variant/15 backface-hidden">
+              {/* Card Actions (Top Right) */}
+              <div className="absolute top-6 right-6 flex gap-2">
+                <button className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant" onClick={(e) => e.stopPropagation()}>
+                  <span className="material-symbols-outlined">star</span>
+                </button>
+              </div>
+
               <div className="text-center">
                 <span className="inline-block px-4 py-1.5 bg-surface-container-high text-on-primary-fixed-variant rounded-full text-[10px] font-bold font-headline mb-4 tracking-wide uppercase">
                   {word.definitions?.[0]?.type || 'WORD'}
@@ -64,14 +65,14 @@ const FlashcardMode = ({ word, onNext, onPrev, progress, total }) => {
                 <div className="flex justify-center gap-4 mt-4">
                   <div className="flex flex-col gap-2 items-center">
                     <div className="flex items-center gap-3">
-                      <button className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high hover:bg-primary-fixed transition-colors group/audio">
+                      <button className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high hover:bg-primary-fixed transition-colors group/audio" onClick={(e) => e.stopPropagation()}>
                         <span className="material-symbols-outlined text-base text-primary group-hover/audio:scale-110 transition-transform">volume_up</span>
                         <span className="text-[10px] font-bold font-headline text-on-surface-variant group-hover/audio:text-primary">UK</span>
                       </button>
                       <span className="text-[10px] font-mono text-on-surface-variant/60">{word.phonetic}</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <button className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high hover:bg-primary-fixed transition-colors group/audio">
+                      <button className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high hover:bg-primary-fixed transition-colors group/audio" onClick={(e) => e.stopPropagation()}>
                         <span className="material-symbols-outlined text-base text-primary group-hover/audio:scale-110 transition-transform">volume_up</span>
                         <span className="text-[10px] font-bold font-headline text-on-surface-variant group-hover/audio:text-primary">US</span>
                       </button>
@@ -80,17 +81,26 @@ const FlashcardMode = ({ word, onNext, onPrev, progress, total }) => {
                   </div>
                 </div>
               </div>
-            ) : (
+
+              {/* Flip Hint */}
+              <div className="absolute bottom-8 flex flex-col items-center gap-1 opacity-40 group-hover:opacity-100 transition-opacity">
+                <span className="material-symbols-outlined text-2xl">touch_app</span>
+                <span className="text-[9px] font-bold tracking-widest uppercase">Click to flip</span>
+              </div>
+            </div>
+
+            {/* Back Face */}
+            <div className="absolute inset-0 w-full h-full bg-surface-container-lowest rounded-[2.5rem] ambient-shadow flex flex-col items-center justify-center p-8 border border-outline-variant/15 backface-hidden rotate-y-180">
               <div className="text-center px-6">
                 <h3 className="text-3xl font-headline font-bold text-primary mb-4">{word.definitions?.[0]?.meaning}</h3>
                 <p className="text-on-surface-variant text-base italic leading-relaxed">{word.definitions?.[0]?.explanation}</p>
               </div>
-            )}
 
-            {/* Flip Hint */}
-            <div className="absolute bottom-8 flex flex-col items-center gap-1 opacity-40 group-hover:opacity-100 transition-opacity">
-              <span className="material-symbols-outlined text-2xl">touch_app</span>
-              <span className="text-[9px] font-bold tracking-widest uppercase">Click to flip</span>
+              {/* Flip Hint (Back) */}
+              <div className="absolute bottom-8 flex flex-col items-center gap-1 opacity-40 group-hover:opacity-100 transition-opacity">
+                <span className="material-symbols-outlined text-2xl">touch_app</span>
+                <span className="text-[9px] font-bold tracking-widest uppercase">Click to flip</span>
+              </div>
             </div>
           </div>
         </div>
