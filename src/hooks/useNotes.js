@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import vocabularyService from '../services/vocabularyService';
+import noteService from '../services/noteService';
 
-export function useMyVocabulary(params = {}) {
+export function useNotes(params = {}) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,16 +12,18 @@ export function useMyVocabulary(params = {}) {
     setLoading(true);
     setError(null);
     try {
-      const result = await vocabularyService.getMyVocabulary(params);
+      const result = await noteService.getNotes(params);
       setData(result);
     } catch (err) {
-      setError(err.message || 'Failed to load vocabulary');
+      setError(err.message || 'Failed to load notes');
     } finally {
       setLoading(false);
     }
   }, [paramsString]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => { fetch(); }, [fetch]);
+  useEffect(() => {
+    fetch();
+  }, [fetch]);
 
   return { data, loading, error, refetch: fetch };
 }
