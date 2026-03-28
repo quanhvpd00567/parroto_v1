@@ -83,7 +83,7 @@ const MyNotesPage = () => {
       return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-pulse">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="h-64 bg-surface-container-low rounded-2xl" />
+            <div key={i} className="h-40 bg-surface-container-low rounded-2xl" />
           ))}
         </div>
       );
@@ -122,7 +122,7 @@ const MyNotesPage = () => {
 
     return (
       <div className="space-y-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="flex flex-col gap-4 max-w-3xl mx-auto">
           {notes.map((note) => (
             <NoteCard
               key={note.id}
