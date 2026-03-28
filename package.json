@@ -11,6 +11,7 @@
     "test:e2e": "npx playwright test"
   },
   "dependencies": {
+    "html-to-image": "^1.11.13",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.2"

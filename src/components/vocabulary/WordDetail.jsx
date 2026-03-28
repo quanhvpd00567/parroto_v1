@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ShareModal from './ShareModal';
 
 const WordDetail = ({ word }) => {
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   if (!word) return (
     <div className="col-span-12 md:col-span-7 lg:col-span-8 flex items-center justify-center bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 min-h-[400px]">
       <p className="text-slate-500 font-medium">Select a word to view details</p>
@@ -27,7 +29,10 @@ const WordDetail = ({ word }) => {
               <button className="p-3 rounded-full hover:bg-surface-container-low text-primary transition-all">
                 <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
               </button>
-              <button className="p-3 rounded-full hover:bg-surface-container-low text-outline transition-all">
+              <button
+                className="p-3 rounded-full hover:bg-surface-container-low text-outline transition-all"
+                onClick={() => setIsShareModalOpen(true)}
+              >
                 <span className="material-symbols-outlined">share</span>
               </button>
             </div>
@@ -111,6 +116,12 @@ const WordDetail = ({ word }) => {
           </div>
         </div>
       </div>
+
+      <ShareModal
+        word={word}
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+      />
     </div>
   );
 };
