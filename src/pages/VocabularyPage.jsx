@@ -158,21 +158,23 @@ const VocabularyPage = () => {
             </div>
           </div>
 
-          {/* Search & Filter */}
-          <div className="flex flex-wrap items-center gap-3 mb-6">
-            <div className="flex items-center gap-2">
-              <input type="text" placeholder="Search vocabulary..." value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-                className="px-4 py-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 w-60" />
-              <button onClick={handleSearch} className="px-4 py-2 rounded-xl bg-primary text-on-primary text-sm font-bold hover:opacity-90 transition-opacity">Search</button>
+          {/* Search & Filter - only in list mode */}
+          {studyMode === 'list' && (
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <div className="flex items-center gap-2">
+                <input type="text" placeholder="Search vocabulary..." value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                  className="px-4 py-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 w-60" />
+                <button onClick={handleSearch} className="px-4 py-2 rounded-xl bg-primary text-on-primary text-sm font-bold hover:opacity-90 transition-opacity">Search</button>
+              </div>
+              <select value={levelFilter} onChange={(e) => handleLevelFilter(e.target.value)}
+                className="px-4 py-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary/30">
+                <option value="">All Levels</option>
+                {LEVEL_OPTIONS.map((lvl) => <option key={lvl} value={lvl}>{lvl}</option>)}
+              </select>
             </div>
-            <select value={levelFilter} onChange={(e) => handleLevelFilter(e.target.value)}
-              className="px-4 py-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary/30">
-              <option value="">All Levels</option>
-              {LEVEL_OPTIONS.map((lvl) => <option key={lvl} value={lvl}>{lvl}</option>)}
-            </select>
-          </div>
+          )}
 
           {renderContent()}
         </main>

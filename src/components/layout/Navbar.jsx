@@ -1,11 +1,32 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, NavLink, Link, useLocation } from 'react-router-dom';
+import apiClient from '../../services/apiClient';
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [userXp, setUserXp] = useState(0);
+  const [userProfile, setUserProfile] = useState(null);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    apiClient.get('/api/profile')
+      .then((res) => {
+        const data = res.data || res;
+        setUserXp(data.xp ?? 0);
+        setUserProfile(data);
+      })
+      .catch(() => {});
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handleXpUpdate = (e) => {
+      setUserXp(e.detail.total_xp);
+    };
+    window.addEventListener('xp-update', handleXpUpdate);
+    return () => window.removeEventListener('xp-update', handleXpUpdate);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -37,6 +58,10 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex items-center gap-4">
+        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200/50">
+          <span className="material-symbols-outlined text-amber-500 text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>diamond</span>
+          <span className="font-bold text-sm text-amber-700">{userXp}</span>
+        </div>
         <button className="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-low rounded-full transition-all">notifications</button>
         <div className="relative" ref={dropdownRef}>
           <button
@@ -53,8 +78,8 @@ const Navbar = () => {
           {isDropdownOpen && (
             <div className="absolute right-0 mt-3 w-56 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] z-50 overflow-hidden">
               <div className="px-5 py-4 bg-gradient-to-r from-primary/5 to-transparent border-b border-slate-100">
-                <p className="text-sm font-semibold text-slate-800">Learner</p>
-                <p className="text-xs text-slate-500 mt-0.5">learner@parroto.com</p>
+                <p className="text-sm font-semibold text-slate-800">{userProfile?.display_name || 'User'}</p>
+                <p className="text-xs text-slate-500 mt-0.5">{userProfile?.email || ''}</p>
               </div>
               <div className="py-1">
                 <Link to="/profile" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">

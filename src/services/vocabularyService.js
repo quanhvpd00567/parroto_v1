@@ -17,6 +17,7 @@ const vocabularyService = {
   toggleFavorite: (vocabularyId) => apiClient.patch(`/api/vocabulary/${vocabularyId}/favorite`),
   markLearned: (vocabularyId) => apiClient.patch(`/api/vocabulary/${vocabularyId}/learned`),
   removeWord: (vocabularyId) => apiClient.delete(`/api/vocabulary/${vocabularyId}`),
+  checkAnswer: (vocabularyId, answer) => apiClient.post('/api/vocabulary/check-answer', { vocabulary_id: vocabularyId, answer }),
 };
 
 export default vocabularyService;
