@@ -53,6 +53,7 @@ const Navbar = () => {
           <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-semibold border-b-2 border-primary pb-1' : 'text-slate-600 hover:text-blue-800 transition-colors'}`} to="/lessons">Lessons</NavLink>
           <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-semibold border-b-2 border-primary pb-1' : 'text-slate-600 hover:text-blue-800 transition-colors'}`} to="/practice">Practice</NavLink>
           <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-semibold border-b-2 border-primary pb-1' : 'text-slate-600 hover:text-blue-800 transition-colors'}`} to="/shop">Shop</NavLink>
+          <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-semibold border-b-2 border-primary pb-1' : 'text-slate-600 hover:text-blue-800 transition-colors'}`} to="/lucky-wheel">Play & Win</NavLink>
           <a className="text-slate-600 hover:text-blue-800 transition-colors" href="#">Community</a>
         </div>
       </div>

@@ -20,6 +20,7 @@ import HelpCenterPage from './pages/HelpCenterPage';
 import ContactSupportPage from './pages/ContactSupportPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import LuckyWheelPage from './pages/LuckyWheelPage';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
           <Route path="/profile/edit" element={<ProtectedRoute><EditProfilePage /></ProtectedRoute>} />
           <Route path="/my-vocabulary" element={<ProtectedRoute><VocabularyPage /></ProtectedRoute>} />
+          <Route path="/lucky-wheel" element={<ProtectedRoute><LuckyWheelPage /></ProtectedRoute>} />
           <Route path="/help-center" element={<HelpCenterPage />} />
           <Route path="/contact-support" element={<ContactSupportPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
