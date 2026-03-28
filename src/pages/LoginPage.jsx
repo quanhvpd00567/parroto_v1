@@ -72,6 +72,7 @@ const LoginPage = () => {
         </Button>
       </form>
 
+      {/* Social login logic temporarily hidden
       <div className="relative my-10">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-surface-container-highest"></div>
@@ -84,10 +85,11 @@ const LoginPage = () => {
       </div>
 
       <SocialAuthButtons />
+      */}
 
       <p className="mt-10 text-center text-sm text-on-surface-variant">
         Don't have an account?
-        <Link className="text-primary font-bold hover:underline underline-offset-4 ml-1" to="#">Join Parroto</Link>
+        <Link className="text-primary font-bold hover:underline underline-offset-4 ml-1" to="/register">Join Parroto</Link>
       </p>
     </AuthLayout>
   );
