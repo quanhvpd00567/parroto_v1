@@ -159,15 +159,10 @@ const FlashcardMode = ({ word, onNext, onPrev, progress, total }) => {
             <span className="material-symbols-outlined text-secondary text-xl">menu_book</span>
             <h4 className="font-headline font-bold text-on-surface text-sm">Usage Example</h4>
           </div>
-          <p className="text-on-surface-variant text-sm italic leading-relaxed">
-            {word.definitions?.[0]?.example.split(/(<span.*?>.*?<\/span>)/g).map((part, i) => {
-              if (part.startsWith('<span')) {
-                const match = part.match(/<span class="(.*?)">(.*?)<\/span>/);
-                if (match) return <span key={i} className={match[1]}>{match[2]}</span>;
-              }
-              return part;
-            })}
-          </p>
+          <div
+            className="text-on-surface-variant text-sm italic leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: word.definitions?.[0]?.example || '' }}
+          />
         </div>
         <div className="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
           <div className="flex items-center gap-3 mb-3">

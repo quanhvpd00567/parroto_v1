@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import vocabularyService from '../services/vocabularyService';
 
-export function useVocabularyList(params = {}) {
+export function useMyVocabulary(params = {}) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -10,7 +10,7 @@ export function useVocabularyList(params = {}) {
     setLoading(true);
     setError(null);
     try {
-      const result = await vocabularyService.getAll(params);
+      const result = await vocabularyService.getMyVocabulary(params);
       setData(result);
     } catch (err) {
       setError(err.message || 'Failed to load vocabulary');
@@ -19,9 +19,7 @@ export function useVocabularyList(params = {}) {
     }
   }, [JSON.stringify(params)]);
 
-  useEffect(() => {
-    fetch();
-  }, [fetch]);
+  useEffect(() => { fetch(); }, [fetch]);
 
   return { data, loading, error, refetch: fetch };
 }

@@ -110,15 +110,10 @@ const WriteMode = ({ word, onNext, onPrev, progress, total, streak = 14, accurac
           </div>
           <div className="p-8 bg-surface-container-low rounded-2xl border-l-4 border-primary/20 relative z-10">
             <p className="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-3 opacity-60">Example sentence</p>
-            <p className="text-xl font-headline leading-relaxed text-on-surface">
-              {word.definitions?.[0]?.example.split(/(<span.*?>.*?<\/span>)/g).map((part, i) => {
-                if (part.startsWith('<span')) {
-                  const match = part.match(/<span class="(.*?)">(.*?)<\/span>/);
-                  if (match) return <span key={i} className={match[1]}>{match[2]}</span>;
-                }
-                return part;
-              })}
-            </p>
+            <div
+              className="text-xl font-headline leading-relaxed text-on-surface"
+              dangerouslySetInnerHTML={{ __html: word.definitions?.[0]?.example || '' }}
+            />
           </div>
         </div>
 
