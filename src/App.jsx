@@ -21,6 +21,9 @@ import ContactSupportPage from './pages/ContactSupportPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import LuckyWheelPage from './pages/LuckyWheelPage';
+import AdminFeedbackPage from './pages/AdminFeedbackPage';
+import AdminConversationPage from './pages/AdminConversationPage';
+import AdminVocabularyFeedbackPage from './pages/AdminVocabularyFeedbackPage';
 
 function App() {
   return (
@@ -46,6 +49,9 @@ function App() {
           <Route path="/contact-support" element={<ContactSupportPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/admin/feedback" element={<ProtectedRoute><AdminFeedbackPage /></ProtectedRoute>} />
+          <Route path="/admin/feedback/:id" element={<ProtectedRoute><AdminConversationPage /></ProtectedRoute>} />
+          <Route path="/admin/vocabulary-feedback" element={<ProtectedRoute><AdminVocabularyFeedbackPage /></ProtectedRoute>} />
         </Routes>
       </Router>
     </AuthProvider>
