@@ -33,7 +33,6 @@ const Navbar = () => {
         <div className="hidden md:flex gap-6">
           <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-semibold border-b-2 border-primary pb-1' : 'text-slate-600 hover:text-blue-800 transition-colors'}`} to="/lessons">Lessons</NavLink>
           <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-semibold border-b-2 border-primary pb-1' : 'text-slate-600 hover:text-blue-800 transition-colors'}`} to="/practice">Practice</NavLink>
-          <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-semibold border-b-2 border-primary pb-1' : 'text-slate-600 hover:text-blue-800 transition-colors'}`} to="/vocabulary">Vocabulary</NavLink>
           <a className="text-slate-600 hover:text-blue-800 transition-colors" href="#">Community</a>
         </div>
       </div>
@@ -58,11 +57,15 @@ const Navbar = () => {
                 <p className="text-xs text-slate-500 mt-0.5">learner@parroto.com</p>
               </div>
               <div className="py-1">
-                <Link to="/vocabulary" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
+                <Link to="/profile" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
+                  <span className="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary transition-colors">account_circle</span>
+                  Profilee
+                </Link>
+                <Link to="/my-vocabulary" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
                   <span className="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary transition-colors">book_2</span>
                   My Vocabulary
                 </Link>
-                <Link to="/notes" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
+                <Link to="/my-notes" className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors group">
                   <span className="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary transition-colors">sticky_note_2</span>
                   My Note
                 </Link>

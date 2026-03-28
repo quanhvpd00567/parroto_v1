@@ -91,7 +91,7 @@ const VocabularyPage = () => {
             }`}
           >
             <span className="material-symbols-outlined text-lg">list_alt</span>
-            Danh sách
+            List
           </button>
           <button
             onClick={() => setStudyMode('flashcard')}
@@ -102,7 +102,7 @@ const VocabularyPage = () => {
             }`}
           >
             <span className="material-symbols-outlined text-lg">style</span>
-            Thẻ ghi nhớ
+            Flashcard
           </button>
           <button
             onClick={() => setStudyMode('write')}
@@ -113,7 +113,7 @@ const VocabularyPage = () => {
             }`}
           >
             <span className="material-symbols-outlined text-lg">edit_note</span>
-            Viết
+            Write
           </button>
         </div>
 

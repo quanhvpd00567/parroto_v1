@@ -25,7 +25,7 @@ function App() {
           <Route path="/lessons" element={<ProtectedRoute><LessonLibraryPage /></ProtectedRoute>} />
           <Route path="/practice" element={<ProtectedRoute><PracticeSessionPage /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><EditProfilePage /></ProtectedRoute>} />
-          <Route path="/vocabulary" element={<ProtectedRoute><VocabularyPage /></ProtectedRoute>} />
+          <Route path="/my-vocabulary" element={<ProtectedRoute><VocabularyPage /></ProtectedRoute>} />
         </Routes>
       </Router>
     </AuthProvider>
