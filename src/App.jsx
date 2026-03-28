@@ -14,6 +14,8 @@ import ProfilePage from './pages/ProfilePage';
 import VocabularyPage from './pages/VocabularyPage';
 import RegisterPage from './pages/RegisterPage';
 import MyNotesPage from './pages/MyNotesPage';
+import ShopPage from './pages/ShopPage';
+import MyGiftsPage from './pages/MyGiftsPage';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/my-notes" element={<ProtectedRoute><MyNotesPage /></ProtectedRoute>} />
+          <Route path="/my-gifts" element={<ProtectedRoute><MyGiftsPage /></ProtectedRoute>} />
+          <Route path="/shop" element={<ProtectedRoute><ShopPage /></ProtectedRoute>} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
           <Route path="/lessons" element={<ProtectedRoute><LessonLibraryPage /></ProtectedRoute>} />
