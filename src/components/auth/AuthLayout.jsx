@@ -1,17 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const AuthLayout = ({ children, title, subtitle, sidebarImage, sidebarTitle, sidebarSubtitle, sidebarTag, sidebarContent }) => {
+  const location = useLocation();
+
   return (
     <div className="bg-background font-body text-on-surface selection:bg-primary-fixed selection:text-primary min-h-screen flex flex-col">
       {/* TopAppBar Shell */}
       <header className="bg-slate-50/70 dark:bg-slate-950/70 backdrop-blur-xl fixed top-0 w-full z-50">
         <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <span className="text-2xl font-extrabold tracking-tight text-blue-900 dark:text-blue-400 font-headline">Parroto</span>
-          </div>
+          </Link>
           <div className="flex items-center gap-6">
-            <Link className="text-slate-500 dark:text-slate-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-headline" to="/login">Log In</Link>
+            {location.pathname === '/login' ? (
+              <Link className="text-slate-500 dark:text-slate-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-headline" to="/register">Sign Up</Link>
+            ) : (
+              <Link className="text-slate-500 dark:text-slate-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-headline" to="/login">Log In</Link>
+            )}
           </div>
         </div>
       </header>

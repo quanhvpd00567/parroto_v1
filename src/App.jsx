@@ -12,6 +12,7 @@ import PracticeSessionPage from './pages/PracticeSessionPage';
 import EditProfilePage from './pages/EditProfilePage';
 import VocabularyPage from './pages/VocabularyPage';
 import RegisterPage from './pages/RegisterPage';
+import MyNotesPage from './pages/MyNotesPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/my-notes" element={<ProtectedRoute><MyNotesPage /></ProtectedRoute>} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
           <Route path="/lessons" element={<ProtectedRoute><LessonLibraryPage /></ProtectedRoute>} />

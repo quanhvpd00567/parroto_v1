@@ -45,8 +45,6 @@ const Navbar = () => {
     navigate('/login');
   };
 
-  const currentPath = location.pathname;
-
   return (
     <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl shadow-sm h-16 px-6 md:px-12 flex justify-between items-center max-w-screen-2xl mx-auto left-1/2 -translate-x-1/2">
       <div className="flex items-center gap-8">
