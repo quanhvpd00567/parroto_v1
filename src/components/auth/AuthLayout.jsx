@@ -1,28 +1,7 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-
 const AuthLayout = ({ children, title, subtitle, sidebarImage, sidebarTitle, sidebarSubtitle, sidebarTag, sidebarContent }) => {
-  const location = useLocation();
-
   return (
     <div className="bg-background font-body text-on-surface selection:bg-primary-fixed selection:text-primary min-h-screen flex flex-col">
-      {/* TopAppBar Shell */}
-      <header className="bg-slate-50/70 dark:bg-slate-950/70 backdrop-blur-xl fixed top-0 w-full z-50">
-        <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="text-2xl font-extrabold tracking-tight text-blue-900 dark:text-blue-400 font-headline">Parroto</span>
-          </Link>
-          <div className="flex items-center gap-6">
-            {location.pathname === '/login' ? (
-              <Link className="text-slate-500 dark:text-slate-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-headline" to="/register">Sign Up</Link>
-            ) : (
-              <Link className="text-slate-500 dark:text-slate-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-headline" to="/login">Log In</Link>
-            )}
-          </div>
-        </div>
-      </header>
-
-      <main className="flex-grow pt-24 pb-12 flex items-center justify-center px-6 relative overflow-hidden">
+      <main className="flex-grow pt-12 pb-12 flex items-center justify-center px-6 relative overflow-hidden">
         {/* Luminous Path Background Effects */}
         <div className="absolute inset-0 -z-10 pointer-events-none">
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_0%_0%,rgba(221,225,255,0.4)_0%,transparent_50%),radial-gradient(circle_at_100%_100%,rgba(255,219,202,0.3)_0%,transparent_50%)]"></div>
