@@ -54,7 +54,7 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl shadow-sm h-16 px-6 md:px-12 flex justify-between items-center max-w-screen-2xl mx-auto left-1/2 -translate-x-1/2">
       <div className="flex items-center gap-8">
-        <Link to="/dashboard" className="text-2xl font-bold tracking-tight text-primary cursor-pointer">Parroto</Link>
+        <Link to="/dashboard" className="text-2xl font-bold tracking-tight text-primary cursor-pointer">Vocera</Link>
         <div className="hidden md:flex gap-6">
           <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-semibold border-b-2 border-primary pb-1' : 'text-slate-600 hover:text-blue-800 transition-colors'}`} to="/lessons">Lessons</NavLink>
           <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-semibold border-b-2 border-primary pb-1' : 'text-slate-600 hover:text-blue-800 transition-colors'}`} to="/practice">Practice</NavLink>
@@ -78,7 +78,7 @@ const Navbar = () => {
           </button>
 
           {isNotificationOpen && (
-            <div className="absolute right-0 mt-3 w-72 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] z-50 overflow-hidden border border-slate-100 rounded-xl">
+            <div className="absolute right-0 mt-3 w-72 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] z-50 overflow-hidden border border-slate-100 rounded-lg">
               <div className="px-5 py-4 bg-slate-50 border-b border-slate-100 flex justify-between items-center">
                 <p className="text-sm font-bold text-slate-800 font-headline">Support & Feedback</p>
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
@@ -143,7 +143,7 @@ const Navbar = () => {
             />
           </button>
           {isDropdownOpen && (
-            <div className="absolute right-0 mt-3 w-56 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] z-50 overflow-hidden">
+            <div className="absolute right-0 mt-3 w-56 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] z-50 overflow-hidden rounded-lg border border-slate-100">
               <div className="px-5 py-4 bg-gradient-to-r from-primary/5 to-transparent border-b border-slate-100">
                 <p className="text-sm font-semibold text-slate-800">{userProfile?.display_name || 'User'}</p>
                 <p className="text-xs text-slate-500 mt-0.5">{userProfile?.email || ''}</p>

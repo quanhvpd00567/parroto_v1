@@ -1,14 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LandingNavbar from '../components/landing/LandingNavbar';
 import PublicFooter from '../components/landing/PublicFooter';
+import feedbackService from '../services/feedbackService';
+import apiClient, { getTokens } from '../services/apiClient';
 
 const ContactSupportPage = () => {
+  const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [form, setForm] = useState({ name: '', email: '', topic: 'Account & Billing', message: '' });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    const { accessToken } = getTokens();
+    if (accessToken) {
+      setIsLoggedIn(true);
+      apiClient.get('/api/profile')
+        .then((res) => {
+          const d = res.data || res;
+          setForm((f) => ({ ...f, name: d.display_name || '', email: d.email || '' }));
+        })
+        .catch(() => {});
+    }
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    // In a real app, you would handle the form submission here.
+    const { accessToken } = getTokens();
+    if (!accessToken) {
+      setShowLoginPopup(true);
+      return;
+    }
+    setSending(true);
+    setErrorMsg(null);
+    try {
+      await feedbackService.submitContact({
+        subject: `[${form.topic}] from ${form.name}`,
+        message: form.message,
+        email: form.email,
+      });
+      setSubmitted(true);
+      setForm((f) => ({ ...f, topic: 'Account & Billing', message: '' }));
+    } catch (err) {
+      setErrorMsg(err.message || 'Failed to send message');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -18,7 +58,7 @@ const ContactSupportPage = () => {
       <main className="max-w-screen-xl mx-auto px-6 py-12 md:py-20 pt-32">
         {/* Hero Section */}
         <section className="mb-16 md:mb-24 text-center max-w-3xl mx-auto">
-          <span className="text-secondary font-semibold tracking-widest text-xs uppercase mb-4 block font-label">Parroto Support</span>
+          <span className="text-secondary font-semibold tracking-widest text-xs uppercase mb-4 block font-label">Vocera Support</span>
           <h1 className="text-5xl md:text-7xl font-extrabold text-primary mb-6 tracking-tight font-headline">How can we help?</h1>
           <p className="text-on-surface-variant text-lg leading-relaxed font-body">Whether you're mastering a new tense or navigating your account, our team is here to ensure your learning path remains luminous and clear.</p>
         </section>
@@ -37,22 +77,28 @@ const ContactSupportPage = () => {
                       placeholder="Alex Rivera"
                       type="text"
                       required
+                      value={form.name}
+                      onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                     />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-on-surface-variant ml-1">Email</label>
                     <input
-                      className="w-full bg-surface-container-low border-none rounded-lg px-4 py-4 focus:ring-2 focus:ring-primary transition-all placeholder:text-outline-variant"
+                      className={`w-full bg-surface-container-low border-none rounded-lg px-4 py-4 focus:ring-2 focus:ring-primary transition-all placeholder:text-outline-variant ${isLoggedIn ? 'opacity-60 cursor-not-allowed' : ''}`}
                       placeholder="alex@example.com"
                       type="email"
                       required
+                      value={form.email}
+                      onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                      disabled={isLoggedIn}
                     />
                   </div>
                 </div>
                 <div className="space-y-2 font-body">
                   <label className="text-sm font-semibold text-on-surface-variant ml-1">Topic</label>
                   <div className="relative">
-                    <select className="w-full bg-surface-container-low border-none rounded-lg px-4 py-4 focus:ring-2 focus:ring-primary appearance-none transition-all">
+                    <select className="w-full bg-surface-container-low border-none rounded-lg px-4 py-4 focus:ring-2 focus:ring-primary appearance-none transition-all"
+                      value={form.topic} onChange={(e) => setForm((f) => ({ ...f, topic: e.target.value }))}>
                       <option>Account & Billing</option>
                       <option>Learning Content</option>
                       <option>Technical Issue</option>
@@ -69,15 +115,29 @@ const ContactSupportPage = () => {
                     placeholder="Tell us how we can assist you..."
                     rows="5"
                     required
+                    value={form.message}
+                    onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                   ></textarea>
                 </div>
                 <button
-                  className="w-full bg-gradient-to-br from-primary to-primary-container text-white py-5 rounded-xl font-bold text-lg hover:shadow-lg active:scale-[0.98] transition-all font-headline"
+                  className="w-full bg-gradient-to-br from-primary to-primary-container text-white py-5 rounded-xl font-bold text-lg hover:shadow-lg active:scale-[0.98] transition-all font-headline disabled:opacity-50"
                   type="submit"
+                  disabled={sending}
                 >
-                  Send Message
+                  {sending ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
+
+              {/* Error Feedback */}
+              {errorMsg && (
+                <div className="mt-8 p-6 bg-red-50 rounded-lg border border-red-200 flex items-start gap-4">
+                  <span className="material-symbols-outlined text-red-500">error</span>
+                  <div>
+                    <p className="font-bold text-red-700 font-headline">Error</p>
+                    <p className="text-sm text-red-600 font-body">{errorMsg}</p>
+                  </div>
+                </div>
+              )}
 
               {/* Success Feedback */}
               {submitted && (
@@ -153,7 +213,7 @@ const ContactSupportPage = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-lg text-on-surface font-headline">Email Support</h4>
-                    <p className="text-on-surface-variant text-sm">hello@parroto.io</p>
+                    <p className="text-on-surface-variant text-sm">hello@Vocera.io</p>
                   </div>
                 </div>
               </div>
@@ -166,7 +226,7 @@ const ContactSupportPage = () => {
           <div className="relative rounded-xl overflow-hidden bg-surface-container-high p-8 md:p-16 flex flex-col md:flex-row items-center gap-12">
             <div className="flex-1 space-y-6">
               <h2 className="text-3xl md:text-4xl font-extrabold text-primary leading-tight font-headline">Explore our self-service Help Center</h2>
-              <p className="text-on-surface-variant text-lg font-body leading-relaxed">Prefer to find answers yourself? Our comprehensive library contains over 200 articles covering every aspect of the Parroto experience.</p>
+              <p className="text-on-surface-variant text-lg font-body leading-relaxed">Prefer to find answers yourself? Our comprehensive library contains over 200 articles covering every aspect of the Vocera experience.</p>
               <a className="inline-flex items-center gap-2 text-primary font-bold text-lg hover:underline transition-all font-headline" href="/help-center">
                 Visit Knowledge Base
                 <span className="material-symbols-outlined">arrow_forward</span>
@@ -184,6 +244,21 @@ const ContactSupportPage = () => {
       </main>
 
       <PublicFooter />
+
+      {/* Login Required Popup */}
+      {showLoginPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm" onClick={() => setShowLoginPopup(false)}>
+          <div className="bg-white rounded-2xl w-full max-w-sm p-8 shadow-2xl text-center" onClick={(e) => e.stopPropagation()}>
+            <span className="material-symbols-outlined text-5xl text-primary mb-4">lock</span>
+            <h3 className="text-xl font-bold text-on-surface font-headline mb-2">Login Required</h3>
+            <p className="text-on-surface-variant text-sm mb-6">You need to log in to submit a contact request.</p>
+            <div className="flex gap-3">
+              <button onClick={() => setShowLoginPopup(false)} className="flex-1 py-3 rounded-xl bg-surface-container-low font-bold text-sm hover:bg-surface-container-high transition-colors">Cancel</button>
+              <button onClick={() => navigate('/login')} className="flex-1 py-3 rounded-xl bg-primary text-white font-bold text-sm hover:opacity-90 transition-opacity">Log In</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

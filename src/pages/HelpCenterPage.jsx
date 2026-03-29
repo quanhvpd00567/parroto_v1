@@ -18,7 +18,7 @@ const HelpCenterPage = () => {
         {/* Hero Section */}
         <section className="max-w-7xl mx-auto px-8 mb-20 text-center">
           <h1 className="font-headline text-5xl md:text-6xl font-extrabold text-primary mb-6 tracking-tight">How can we help?</h1>
-          <p className="text-on-surface-variant text-lg mb-12 max-w-2xl mx-auto">Welcome to the Parroto Support Sanctuary. Find guides, tutorials, and answers from our language experts.</p>
+          <p className="text-on-surface-variant text-lg mb-12 max-w-2xl mx-auto">Welcome to the Vocera Support Sanctuary. Find guides, tutorials, and answers from our language experts.</p>
 
           {/* Search Bar */}
           <div className="max-w-3xl mx-auto relative group">
@@ -41,7 +41,7 @@ const HelpCenterPage = () => {
               <div className="relative z-10">
                 <span className="material-symbols-outlined text-secondary text-4xl mb-6">auto_awesome</span>
                 <h3 className="font-headline text-3xl font-bold text-on-surface mb-4">Getting Started</h3>
-                <p className="text-on-surface-variant max-w-md text-lg">New to Parroto? Learn the basics of our immersive platform and start your first lesson in minutes.</p>
+                <p className="text-on-surface-variant max-w-md text-lg">New to Vocera? Learn the basics of our immersive platform and start your first lesson in minutes.</p>
               </div>
               <div className="mt-8 flex gap-4 flex-wrap z-10">
                 <span className="bg-surface-container px-4 py-2 rounded-full text-sm font-medium text-primary">Setup Guide</span>

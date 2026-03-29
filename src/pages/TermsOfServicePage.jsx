@@ -25,7 +25,7 @@ const TermsOfServicePage = () => {
             </div>
             <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-primary mb-6 leading-tight font-headline">Terms of Service</h1>
             <p className="text-on-surface-variant text-lg max-w-2xl leading-relaxed font-body">
-              Welcome to Parroto. These terms govern your use of our platform. By accessing our services, you agree to follow the guidelines that keep our learning community safe and effective.
+              Welcome to Vocera. These terms govern your use of our platform. By accessing our services, you agree to follow the guidelines that keep our learning community safe and effective.
             </p>
             <div className="mt-10 flex items-center gap-3 text-sm font-medium text-outline font-body">
               <span className="material-symbols-outlined text-base">calendar_today</span>
@@ -64,11 +64,11 @@ const TermsOfServicePage = () => {
                 </div>
                 <div className="max-w-none text-on-surface-variant leading-loose space-y-6">
                   <p>
-                    These Terms of Service ("Terms") constitute a legally binding agreement between you and Parroto regarding your access to and use of the Parroto website, mobile application, and any related services.
+                    These Terms of Service ("Terms") constitute a legally binding agreement between you and Vocera regarding your access to and use of the Vocera website, mobile application, and any related services.
                   </p>
                   <div className="bg-surface-container-low p-8 rounded-xl border-l-4 border-primary">
                     <p className="font-medium text-on-background">
-                      By using Parroto, you confirm that you have read, understood, and agreed to be bound by these Terms. If you do not agree, please discontinue use of the platform immediately.
+                      By using Vocera, you confirm that you have read, understood, and agreed to be bound by these Terms. If you do not agree, please discontinue use of the platform immediately.
                     </p>
                   </div>
                 </div>
@@ -83,7 +83,7 @@ const TermsOfServicePage = () => {
                   <h2 className="text-3xl font-bold tracking-tight text-on-surface font-headline">2. User Accounts</h2>
                 </div>
                 <div className="text-on-surface-variant leading-loose space-y-6">
-                  <p>To access certain features of Parroto, you must register for an account. You are responsible for maintaining the confidentiality of your login credentials and for all activities that occur under your account.</p>
+                  <p>To access certain features of Vocera, you must register for an account. You are responsible for maintaining the confidentiality of your login credentials and for all activities that occur under your account.</p>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 list-none p-0">
                     <li className="bg-surface-container-lowest p-6 rounded-lg shadow-sm">
                       <span className="text-primary font-bold block mb-2 font-headline">Accuracy</span>
@@ -106,9 +106,9 @@ const TermsOfServicePage = () => {
                   <h2 className="text-3xl font-bold tracking-tight text-on-surface font-headline">3. Content</h2>
                 </div>
                 <div className="text-on-surface-variant leading-loose space-y-6">
-                  <p>Our service allows you to learn through proprietary lessons, audio, and visual materials. All content provided by Parroto is protected by intellectual property laws.</p>
+                  <p>Our service allows you to learn through proprietary lessons, audio, and visual materials. All content provided by Vocera is protected by intellectual property laws.</p>
                   <div className="bg-primary text-on-primary p-8 rounded-xl shadow-lg">
-                    <h4 className="font-headline text-xl font-bold mb-4">Your License to Use Parroto</h4>
+                    <h4 className="font-headline text-xl font-bold mb-4">Your License to Use Vocera</h4>
                     <p className="opacity-90">We grant you a personal, non-exclusive, non-transferable, and limited license to access and use the platform for personal, non-commercial language learning purposes only.</p>
                   </div>
                 </div>
@@ -123,7 +123,7 @@ const TermsOfServicePage = () => {
                   <h2 className="text-3xl font-bold tracking-tight text-on-surface font-headline">4. Termination</h2>
                 </div>
                 <div className="text-on-surface-variant leading-loose space-y-6">
-                  <p>We reserve the right to suspend or terminate your account and access to Parroto at our sole discretion, without notice, for conduct that we believe violates these Terms or is harmful to other users, us, or third parties, or for any other reason.</p>
+                  <p>We reserve the right to suspend or terminate your account and access to Vocera at our sole discretion, without notice, for conduct that we believe violates these Terms or is harmful to other users, us, or third parties, or for any other reason.</p>
                 </div>
               </section>
 
@@ -136,7 +136,7 @@ const TermsOfServicePage = () => {
                   <h2 className="text-3xl font-bold tracking-tight text-on-surface font-headline">5. Liability</h2>
                 </div>
                 <div className="text-on-surface-variant leading-loose space-y-6">
-                  <p>To the maximum extent permitted by law, Parroto and its affiliates shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly.</p>
+                  <p>To the maximum extent permitted by law, Vocera and its affiliates shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly.</p>
                 </div>
               </section>
 

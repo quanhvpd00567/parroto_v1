@@ -58,7 +58,7 @@ const ShopPage = () => {
         <section className="mb-12 relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-primary-container p-8 md:p-12 text-on-primary">
           <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
             <div>
-              <h1 className="font-headline text-3xl md:text-4xl font-extrabold mb-2 tracking-tight">The Parroto Treasury</h1>
+              <h1 className="font-headline text-3xl md:text-4xl font-extrabold mb-2 tracking-tight">The Vocera Treasury</h1>
               <p className="text-blue-100 opacity-90 max-w-md">Redeem your hard-earned diamonds for exclusive gifts and rewards.</p>
             </div>
             <div className="flex flex-wrap gap-4">

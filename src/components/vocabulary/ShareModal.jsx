@@ -10,7 +10,7 @@ const ShareModal = ({ word, onClose }) => {
     try {
       const dataUrl = await toPng(cardRef.current, { cacheBust: true });
       const link = document.createElement('a');
-      link.download = `parroto-${word.term}.png`;
+      link.download = `Vocera-${word.term}.png`;
       link.href = dataUrl;
       link.click();
     } catch (err) {
@@ -23,12 +23,12 @@ const ShareModal = ({ word, onClose }) => {
     try {
       const dataUrl = await toPng(cardRef.current, { cacheBust: true });
       const blob = await (await fetch(dataUrl)).blob();
-      const file = new File([blob], `parroto-${word.term}.png`, { type: 'image/png' });
+      const file = new File([blob], `Vocera-${word.term}.png`, { type: 'image/png' });
 
       if (navigator.share) {
         await navigator.share({
           files: [file],
-          title: `Learn '${word.term}' on Parroto`,
+          title: `Learn '${word.term}' on Vocera`,
           text: `I just mastered the word '${word.term}'!`,
         });
       } else {
@@ -69,7 +69,7 @@ const ShareModal = ({ word, onClose }) => {
 
               {/* Card Header */}
               <div className="flex justify-between items-start mb-4 md:mb-6">
-                <span className="text-primary font-black tracking-tighter text-[10px] md:text-sm">PARROTO</span>
+                <span className="text-primary font-black tracking-tighter text-[10px] md:text-sm">Vocera</span>
                 {word.level && (
                   <span className="bg-primary/10 text-primary text-[8px] md:text-[10px] font-bold px-1.5 py-0.5 md:px-2 md:py-1 rounded-full uppercase tracking-widest">
                     Level {word.level}
@@ -105,7 +105,7 @@ const ShareModal = ({ word, onClose }) => {
               {/* Footer */}
               <div className="mt-4 md:mt-6 flex justify-between items-end shrink-0">
                 <div className="min-w-0">
-                  <p className="text-[7px] md:text-[8px] font-bold text-outline uppercase tracking-widest mb-0.5">Mastered on Parroto</p>
+                  <p className="text-[7px] md:text-[8px] font-bold text-outline uppercase tracking-widest mb-0.5">Mastered on Vocera</p>
                   <p className="text-[5px] md:text-[6px] text-outline-variant truncate">Learn 100+ languages through context</p>
                 </div>
                 <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary flex items-center justify-center text-white shrink-0">

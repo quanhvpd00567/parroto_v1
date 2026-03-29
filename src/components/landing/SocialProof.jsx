@@ -5,7 +5,7 @@ const SocialProof = () => {
     {
       name: 'Minh Anh',
       role: 'Marketing Manager',
-      text: '"Parroto thay đổi hoàn toàn cách tôi học tiếng Anh. Shadowing giúp tôi tự tin nói chuyện với đồng nghiệp nước ngoài chỉ sau 3 tháng."',
+      text: '"Vocera thay đổi hoàn toàn cách tôi học tiếng Anh. Shadowing giúp tôi tự tin nói chuyện với đồng nghiệp nước ngoài chỉ sau 3 tháng."',
       image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDao7vyCDYbb5WFEb3jEL1NwKX1mW8QgflAto6Z--NZQteHG_MclFo7TT00GsJdOTlwjJA0m5mY8wKYPq-T1_n-I2yN8iwm37wLwwqKsdbaEvcwvL1OmJKZFFfoZF9w_XLETWZpOHskOQ4b7MEiD90NPUud2X8JhEVaR0-8tfM5MOHPD_tftIh5C9k8bUD0bnTGZy-Vp7GKlFwa_gqV0qi3qP8F1nfdZ3MW7RnPXzUhD6-YOeaGJBx5IGYt4zFZvoSpfGzmLvtk9utg'
     },
     {
@@ -28,7 +28,7 @@ const SocialProof = () => {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-xl">
             <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">Được tin dùng bởi hơn 500,000 học viên</h2>
-            <p className="text-on-surface-variant text-lg">Những câu chuyện thành công từ cộng đồng Parroto trên toàn thế giới.</p>
+            <p className="text-on-surface-variant text-lg">Những câu chuyện thành công từ cộng đồng Vocera trên toàn thế giới.</p>
           </div>
           <div className="flex gap-2">
             <button className="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-colors">

@@ -56,7 +56,7 @@ const AuthLayout = ({ children, title, subtitle, sidebarImage, sidebarTitle, sid
 
             {/* Terms Disclaimer or additional footer info */}
             <p className="mt-8 text-[11px] text-center text-outline leading-relaxed px-4">
-              By continuing, you agree to Parroto's <a className="underline" href="#">Terms of Service</a> and <a className="underline" href="#">Privacy Policy</a>. We promise to keep your data as secure as our translations.
+              By continuing, you agree to Vocera's <a className="underline" href="#">Terms of Service</a> and <a className="underline" href="#">Privacy Policy</a>. We promise to keep your data as secure as our translations.
             </p>
           </section>
         </div>
@@ -66,8 +66,8 @@ const AuthLayout = ({ children, title, subtitle, sidebarImage, sidebarTitle, sid
       <footer className="bg-slate-100 dark:bg-slate-900 w-full py-12 px-6 mt-auto">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 max-w-7xl mx-auto">
           <div className="flex flex-col items-center md:items-start gap-2">
-            <span className="font-headline font-bold text-blue-900 dark:text-blue-400">Parroto</span>
-            <p className="font-body text-sm tracking-wide text-slate-500 dark:text-slate-400">© 2024 Parroto. The Guided Luminous Path.</p>
+            <span className="font-headline font-bold text-blue-900 dark:text-blue-400">Vocera</span>
+            <p className="font-body text-sm tracking-wide text-slate-500 dark:text-slate-400">© 2024 Vocera. The Guided Luminous Path.</p>
           </div>
           <div className="flex gap-8">
             <a className="font-body text-sm tracking-wide text-slate-500 dark:text-slate-400 hover:text-secondary transition-all" target='blank' href="/privacy-policy">Privacy Policy</a>

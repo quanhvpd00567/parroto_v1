@@ -28,7 +28,7 @@ const PrivacyPolicyPage = () => {
               Your Privacy <br/><span className="text-primary-container">is our Priority.</span>
             </h1>
             <p className="text-xl text-on-surface-variant max-w-2xl font-body leading-relaxed">
-              Last updated: May 24, 2024. At Parroto, we believe language learning should be safe, transparent, and focused on your personal growth.
+              Last updated: May 24, 2024. At Vocera, we believe language learning should be safe, transparent, and focused on your personal growth.
             </p>
           </header>
 
@@ -52,7 +52,7 @@ const PrivacyPolicyPage = () => {
               </div>
               <div className="mt-8 p-6 bg-primary-container rounded-xl text-on-primary-container font-body">
                 <p className="text-sm leading-relaxed mb-4">Have questions about your data?</p>
-                <a className="inline-flex items-center gap-2 font-bold hover:underline" href="mailto:privacy@parroto.io">
+                <a className="inline-flex items-center gap-2 font-bold hover:underline" href="mailto:privacy@Vocera.io">
                   Contact Support
                   <span className="material-symbols-outlined text-sm">arrow_forward</span>
                 </a>
@@ -95,7 +95,7 @@ const PrivacyPolicyPage = () => {
                   <h2 className="text-3xl font-bold font-headline">Use of Information</h2>
                 </div>
                 <div className="text-on-surface-variant leading-loose">
-                  <p className="mb-6">The information we collect is used to personalize your learning journey and improve the overall Parroto experience. Our primary goal is to provide a seamless linguistic path for every user.</p>
+                  <p className="mb-6">The information we collect is used to personalize your learning journey and improve the overall Vocera experience. Our primary goal is to provide a seamless linguistic path for every user.</p>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 list-none p-0">
                     <li className="flex items-start gap-3 bg-surface p-4 rounded-lg">
                       <span className="material-symbols-outlined text-secondary">check_circle</span>
@@ -170,7 +170,7 @@ const PrivacyPolicyPage = () => {
                 </div>
                 <div className="bg-surface-container-lowest p-10 rounded-xl border border-outline-variant/15 ambient-shadow">
                   <p className="text-on-surface-variant leading-loose">
-                    Parroto does not sell your personal information. We only share data with third-party vendors who assist us in operating our platform, such as payment processors (Stripe) and cloud hosting services (AWS).
+                    Vocera does not sell your personal information. We only share data with third-party vendors who assist us in operating our platform, such as payment processors (Stripe) and cloud hosting services (AWS).
                   </p>
                   <p className="mt-4 text-on-surface-variant leading-loose italic">
                     *All third-party partners are strictly vetted for GDPR and CCPA compliance.

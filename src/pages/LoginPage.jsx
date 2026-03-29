@@ -89,7 +89,7 @@ const LoginPage = () => {
 
       <p className="mt-10 text-center text-sm text-on-surface-variant">
         Don't have an account?
-        <Link className="text-primary font-bold hover:underline underline-offset-4 ml-1" to="/register">Join Parroto</Link>
+        <Link className="text-primary font-bold hover:underline underline-offset-4 ml-1" to="/register">Join Vocera</Link>
       </p>
     </AuthLayout>
   );
