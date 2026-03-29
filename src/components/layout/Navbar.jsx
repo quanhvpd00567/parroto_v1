@@ -4,6 +4,7 @@ import apiClient from '../../services/apiClient';
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [userXp, setUserXp] = useState(0);
   const [userProfile, setUserProfile] = useState(null);
   const dropdownRef = useRef(null);
@@ -28,10 +29,15 @@ const Navbar = () => {
     return () => window.removeEventListener('xp-update', handleXpUpdate);
   }, []);
 
+  const notificationRef = useRef(null);
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setIsDropdownOpen(false);
+      }
+      if (notificationRef.current && !notificationRef.current.contains(e.target)) {
+        setIsNotificationOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -62,7 +68,68 @@ const Navbar = () => {
           <span className="material-symbols-outlined text-amber-500 text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>diamond</span>
           <span className="font-bold text-sm text-amber-700">{userXp}</span>
         </div>
-        <Link to="/feedback" className="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-low rounded-full transition-all">notifications</Link>
+
+        <div className="relative" ref={notificationRef}>
+          <button
+            onClick={() => setIsNotificationOpen(!isNotificationOpen)}
+            className={`material-symbols-outlined p-2 hover:bg-surface-container-low rounded-full transition-all cursor-pointer ${isNotificationOpen ? 'bg-surface-container-low text-primary' : 'text-on-surface-variant'}`}
+          >
+            notifications
+          </button>
+
+          {isNotificationOpen && (
+            <div className="absolute right-0 mt-3 w-72 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] z-50 overflow-hidden border border-slate-100 rounded-xl">
+              <div className="px-5 py-4 bg-slate-50 border-b border-slate-100 flex justify-between items-center">
+                <p className="text-sm font-bold text-slate-800 font-headline">Support & Feedback</p>
+                <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+              </div>
+              <div className="py-2">
+                <Link
+                  to="/feedback"
+                  onClick={() => setIsNotificationOpen(false)}
+                  className="flex items-center gap-4 px-5 py-3.5 hover:bg-primary/5 group transition-colors"
+                >
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                    <span className="material-symbols-outlined text-[20px]">inbox</span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-slate-800">Message Inbox</p>
+                    <p className="text-[11px] text-slate-500">Track your active inquiries</p>
+                  </div>
+                </Link>
+
+                <Link
+                  to="/vocabulary-feedback"
+                  onClick={() => setIsNotificationOpen(false)}
+                  className="flex items-center gap-4 px-5 py-3.5 hover:bg-secondary/5 group transition-colors"
+                >
+                  <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+                    <span className="material-symbols-outlined text-[20px]">auto_awesome</span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-slate-800">My Contributions</p>
+                    <p className="text-[11px] text-slate-500">Linguistic feedback status</p>
+                  </div>
+                </Link>
+
+                <Link
+                  to="/contact-support"
+                  onClick={() => setIsNotificationOpen(false)}
+                  className="flex items-center gap-4 px-5 py-3.5 hover:bg-tertiary-fixed-dim/5 group transition-colors border-t border-slate-50 mt-1"
+                >
+                  <div className="w-10 h-10 rounded-full bg-tertiary-fixed-dim/10 flex items-center justify-center text-on-tertiary-fixed-variant group-hover:scale-110 transition-transform">
+                    <span className="material-symbols-outlined text-[20px]">support_agent</span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-slate-800">Contact Us</p>
+                    <p className="text-[11px] text-slate-500">Get direct assistance</p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsDropdownOpen((prev) => !prev)}

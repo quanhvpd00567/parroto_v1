@@ -1,9 +1,54 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DashboardLayout from '../components/layout/DashboardLayout';
 
 const SupportConversationPage = () => {
   const navigate = useNavigate();
+  const editorRef = useRef(null);
+  const fileInputRef = useRef(null);
+  const [isEmpty, setIsEmpty] = useState(true);
+
+  const execCommand = (command, value = null) => {
+    document.execCommand(command, false, value);
+    if (editorRef.current) {
+      editorRef.current.focus();
+    }
+  };
+
+  const handleLink = () => {
+    const url = prompt('Enter the URL:');
+    if (url) execCommand('createLink', url);
+  };
+
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        execCommand('insertImage', event.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleInput = () => {
+    if (editorRef.current) {
+      setIsEmpty(editorRef.current.innerText.trim() === '' && editorRef.current.querySelectorAll('img').length === 0);
+    }
+  };
+
+  const handleSendMessage = () => {
+    if (editorRef.current) {
+      const content = editorRef.current.innerHTML;
+      if (content.trim() === '' || content === '<br>') return;
+
+      console.log('Sending message:', content);
+      // Reset editor
+      editorRef.current.innerHTML = '';
+      setIsEmpty(true);
+      alert('Message sent!');
+    }
+  };
 
   return (
     <DashboardLayout>
@@ -66,23 +111,68 @@ const SupportConversationPage = () => {
         <div className="mt-auto pt-8 border-t border-surface-container-low">
           <div className="bg-surface-container-lowest rounded-[2rem] p-4 shadow-[0_20px_50px_rgba(21,28,37,0.08)] ring-1 ring-outline-variant/10">
             <div className="flex items-center gap-4 px-4 pb-3 border-b border-surface-container-low mb-3">
-              <button className="p-2 text-on-surface-variant hover:text-primary transition-colors">
+              <button
+                onClick={() => execCommand('bold')}
+                className="p-2 text-on-surface-variant hover:text-primary transition-colors"
+                title="Bold"
+              >
                 <span className="material-symbols-outlined">format_bold</span>
               </button>
-              <button className="p-2 text-on-surface-variant hover:text-primary transition-colors">
+              <button
+                onClick={() => execCommand('italic')}
+                className="p-2 text-on-surface-variant hover:text-primary transition-colors"
+                title="Italic"
+              >
                 <span className="material-symbols-outlined">format_italic</span>
               </button>
-              <button className="p-2 text-on-surface-variant hover:text-primary transition-colors">
+              <button
+                onClick={handleLink}
+                className="p-2 text-on-surface-variant hover:text-primary transition-colors"
+                title="Insert Link"
+              >
                 <span className="material-symbols-outlined">link</span>
               </button>
+              <div className="h-5 w-[1px] bg-outline-variant/30"></div>
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="p-2 text-on-surface-variant hover:text-primary transition-colors"
+                title="Insert Image"
+              >
+                <span className="material-symbols-outlined">image</span>
+              </button>
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleImage}
+                accept="image/*"
+                className="hidden"
+              />
             </div>
-            <textarea className="w-full min-h-[140px] bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/40 resize-none font-body text-lg p-4" placeholder="Type your message here..."></textarea>
+
+            <div className="relative min-h-[140px]">
+              {isEmpty && (
+                <div className="absolute top-4 left-4 text-on-surface-variant/40 pointer-events-none text-lg">
+                  Type your message here...
+                </div>
+              )}
+              <div
+                ref={editorRef}
+                contentEditable
+                onInput={handleInput}
+                className="w-full min-h-[140px] bg-transparent border-none focus:outline-none text-on-surface font-body text-lg p-4 custom-scrollbar overflow-y-auto"
+                style={{ maxHeight: '300px' }}
+              ></div>
+            </div>
+
             <div className="flex justify-between items-center p-2">
               <div className="flex items-center gap-2 text-on-surface-variant/60 text-xs px-4">
                 <span className="material-symbols-outlined text-[16px]">info</span>
                 Your message will be sent to the support team.
               </div>
-              <button className="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-xl font-headline font-bold text-sm tracking-wide flex items-center gap-3 shadow-[0_10px_20px_rgba(0,40,142,0.2)] hover:shadow-[0_15px_30px_rgba(0,40,142,0.3)] transition-all active:scale-[0.98]">
+              <button
+                onClick={handleSendMessage}
+                className="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-xl font-headline font-bold text-sm tracking-wide flex items-center gap-3 shadow-[0_10px_20px_rgba(0,40,142,0.2)] hover:shadow-[0_15px_30px_rgba(0,40,142,0.3)] transition-all active:scale-[0.98]"
+              >
                 Send Message
                 <span className="material-symbols-outlined text-[18px]">send</span>
               </button>
