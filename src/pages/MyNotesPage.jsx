@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import NoteCard from '../components/notes/NoteCard';
 import NoteSearchFilters from '../components/notes/NoteSearchFilters';
