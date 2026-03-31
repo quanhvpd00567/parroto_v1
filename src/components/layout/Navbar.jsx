@@ -78,7 +78,7 @@ const Navbar = () => {
           </button>
 
           {isNotificationOpen && (
-            <div className="absolute right-0 mt-3 w-72 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] z-50 overflow-hidden border border-slate-100 rounded-lg">
+            <div className="absolute right-0 mt-3 w-72 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] z-50 overflow-hidden rounded-lg">
               <div className="px-5 py-4 bg-slate-50 border-b border-slate-100 flex justify-between items-center">
                 <p className="text-sm font-bold text-slate-800 font-headline">Support & Feedback</p>
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
@@ -143,7 +143,7 @@ const Navbar = () => {
             />
           </button>
           {isDropdownOpen && (
-            <div className="absolute right-0 mt-3 w-56 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] z-50 overflow-hidden rounded-lg border border-slate-100">
+            <div className="absolute right-0 mt-3 w-56 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] z-50 overflow-hidden rounded-lg">
               <div className="px-5 py-4 bg-gradient-to-r from-primary/5 to-transparent border-b border-slate-100">
                 <p className="text-sm font-semibold text-slate-800">{userProfile?.display_name || 'User'}</p>
                 <p className="text-xs text-slate-500 mt-0.5">{userProfile?.email || ''}</p>
