@@ -25,12 +25,12 @@ const PublicFooter = () => {
           </div>
           <div className="flex flex-col gap-3">
             <p className="font-bold text-on-surface text-sm">Legal</p>
-            <a className="text-sm font-inter text-slate-500 hover:text-primary transition-colors" target='blank' href="/privacy-policy">Privacy Policy</a>
-            <a className="text-sm font-inter text-slate-500 hover:text-primary transition-colors"  target='blank'  href="/terms-of-service">Terms of Service</a>
+            <a className="text-sm font-inter text-slate-500 hover:text-primary transition-colors" target='_blank' rel="noopener noreferrer" href="/privacy-policy">Privacy Policy</a>
+            <a className="text-sm font-inter text-slate-500 hover:text-primary transition-colors"  target='_blank' rel="noopener noreferrer" href="/terms-of-service">Terms of Service</a>
           </div>
           <div className="flex flex-col gap-3">
             <p className="font-bold text-on-surface text-sm">Support</p>
-            <a className="text-sm font-inter text-slate-500 hover:text-primary transition-colors"  target='blank'  href="/help-center">Help Center</a>
+            <a className="text-sm font-inter text-slate-500 hover:text-primary transition-colors"  target='_blank' rel="noopener noreferrer" href="/help-center">Help Center</a>
             <a className="text-sm font-inter text-slate-500 hover:text-primary transition-colors" href="#">Language Settings</a>
           </div>
         </div>
