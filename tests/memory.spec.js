@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('memory e2e test to get evidence screenshot', async ({ page }) => {
   // Navigate to the memory page
-  await page.goto('/memory.html');
+  await page.goto('/memory');
 
   // Wait for the elements to be present
   const clozeTexts = page.locator('.cloze-text');
