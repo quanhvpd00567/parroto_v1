@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { toPng } from 'html-to-image';
-import { hasHtmlContent } from '../../utils/html';
+import { hasHtmlContent, sanitizeHtml } from '../../utils/html';
 
 const ShareModal = ({ word, onClose }) => {
   const cardRef = useRef(null);
@@ -97,7 +97,7 @@ const ShareModal = ({ word, onClose }) => {
               {hasHtmlContent(word.definitions?.[0]?.example) && (
                 <div
                   className="bg-surface-container-low/50 p-3 md:p-4 rounded-xl flex-1 italic text-on-surface-variant text-[11px] md:text-sm overflow-hidden"
-                  dangerouslySetInnerHTML={{ __html: word.definitions[0].example }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(word.definitions[0].example) }}
                 >
                 </div>
               )}

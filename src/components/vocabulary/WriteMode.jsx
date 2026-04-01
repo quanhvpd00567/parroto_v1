@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { hasHtmlContent } from '../../utils/html';
+import { hasHtmlContent, sanitizeHtml } from '../../utils/html';
 import vocabularyService from '../../services/vocabularyService';
 
 const WriteMode = ({ word, onNext, onPrev, progress, total, onWordLearned }) => {
@@ -135,7 +135,7 @@ const WriteMode = ({ word, onNext, onPrev, progress, total, onWordLearned }) => 
           <div className="p-4 md:p-8 bg-surface-container-low rounded-xl md:rounded-2xl border-l-4 border-primary/20 relative z-10">
             <p className="text-on-surface-variant text-[9px] md:text-xs font-bold uppercase tracking-widest mb-2 md:mb-3 opacity-60">Example sentence</p>
             {hasHtmlContent(word.definitions?.[0]?.example) ? (
-              <div className="text-base md:text-xl font-headline leading-relaxed text-on-surface" dangerouslySetInnerHTML={{ __html: word.definitions[0].example }} />
+              <div className="text-base md:text-xl font-headline leading-relaxed text-on-surface" dangerouslySetInnerHTML={{ __html: sanitizeHtml(word.definitions[0].example) }} />
             ) : (
               <p className="text-base md:text-xl font-headline leading-relaxed text-on-surface-variant italic">No example available</p>
             )}
