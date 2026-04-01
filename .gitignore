@@ -9,7 +9,7 @@ lerna-debug.log*
 
 node_modules
 dist
-tests
+#tests
 playwright-report
 dist-ssr
 *.local
