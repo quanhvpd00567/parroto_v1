@@ -1,14 +1,5 @@
 import apiClient from './apiClient';
-
-function buildQuery(params = {}) {
-  const query = new URLSearchParams();
-  if (params.page) query.set('page', params.page);
-  if (params.limit) query.set('limit', params.limit);
-  if (params.search) query.set('search', params.search);
-  if (params.category) query.set('category', params.category);
-  const qs = query.toString();
-  return qs ? `?${qs}` : '';
-}
+import { buildQuery } from '../utils/apiParams';
 
 const noteService = {
   getNotes: (params) => apiClient.get(`/api/notes${buildQuery(params)}`),
