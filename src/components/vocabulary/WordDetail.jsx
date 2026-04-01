@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ShareModal from './ShareModal';
-import { hasHtmlContent } from '../../utils/html';
+import { hasHtmlContent, sanitizeHtml } from '../../utils/html';
 
 const WordDetail = ({ word, actionLoading, onAction }) => {
   const [showShareModal, setShowShareModal] = useState(false);
@@ -104,7 +104,7 @@ const WordDetail = ({ word, actionLoading, onAction }) => {
                         <div className="w-full">
                           <div
                             className="text-sm md:text-base text-on-surface font-medium font-body"
-                            dangerouslySetInnerHTML={{ __html: def.example }}
+                            dangerouslySetInnerHTML={{ __html: sanitizeHtml(def.example) }}
                           />
                           {def.exampleTranslation && (
                             <p className="text-sm text-on-surface-variant mt-1 font-body">{def.exampleTranslation}</p>

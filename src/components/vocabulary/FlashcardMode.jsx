@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { hasHtmlContent } from '../../utils/html';
+import { hasHtmlContent, sanitizeHtml } from '../../utils/html';
 
 const FlashcardMode = ({ word, onNext, onPrev, progress, total }) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -162,7 +162,7 @@ const FlashcardMode = ({ word, onNext, onPrev, progress, total }) => {
           </div>
           <div
             className="text-on-surface-variant text-sm italic leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: hasHtmlContent(word.definitions?.[0]?.example) ? word.definitions[0].example : '<em>No example available</em>' }}
+            dangerouslySetInnerHTML={{ __html: hasHtmlContent(word.definitions?.[0]?.example) ? sanitizeHtml(word.definitions[0].example) : '<em>No example available</em>' }}
           />
         </div>
         <div className="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
